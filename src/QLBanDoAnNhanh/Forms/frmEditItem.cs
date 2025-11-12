@@ -1,4 +1,4 @@
-﻿using QLBanDoAnNhanh.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -15,6 +15,7 @@ namespace QLBanDoAnNhanh
     public partial class frmEditItem : Form
     {
         private ProductService _productService;
+        private TypeProductService _typeProductService;
         private int _idProduct;
         private bool _isImageChanged = false;
         public frmEditItem(int idProduct)
@@ -22,11 +23,12 @@ namespace QLBanDoAnNhanh
             InitializeComponent();
             _idProduct = idProduct;
             _productService = new ProductService();
+            _typeProductService = new TypeProductService();
         }
 
         private void frmEditItem_Load(object sender, EventArgs e)
         {
-            var typeProduct = _productService.GetAllTypes();
+            var typeProduct = _typeProductService.GetActiveTypesOrdered();
             cbType.DataSource = typeProduct;
             cbType.DisplayMember = "NameType";
             cbType.ValueMember = "IdTypeProduct";
@@ -35,7 +37,7 @@ namespace QLBanDoAnNhanh
             {
                 cbType.SelectedValue = productFood.IdTypeProduct;
                 tbName.Text = productFood.NameProduct;
-                tbPrice.Text = productFood.PriceProduct.Value.ToString("0.0");
+                tbPrice.Text = productFood.PriceProduct.ToString("0.0");
                 if (string.IsNullOrEmpty(productFood.Descriptions) == true)
                 {
                     tbDecript.Text = "N/A";

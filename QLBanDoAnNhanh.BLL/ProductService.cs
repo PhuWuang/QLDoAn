@@ -1,97 +1,143 @@
-﻿using QLBanDoAnNhanh.DAL;
-using QLBanDoAnNhanh.DAL.Models;
-using QLBanDoAnNhanh.Models;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Linq;
+using QLBanDoAnNhanh.BLL.DTOs;
+using QLBanDoAnNhanh.BLL.Mappers;
+using QLBanDoAnNhanh.DAL;
+using QLBanDoAnNhanh.DAL.Repositories;
 
 namespace QLBanDoAnNhanh.BLL
 {
+    // Đổi namespace thành .Services nếu bạn muốn
     public class ProductService
     {
-        private ProductDAL _productDAL;
-
-        public ProductService()
+        // 1. Dùng cho frmMain
+        public List<ProductDto> GetByTypeId(int typeId)
         {
-            _productDAL = new ProductDAL();
+            using (var uow = new UnitOfWork(DataContextFactory.Create())) // Thêm ngoặc ()
+            { // Thêm ngoặc {
+                return uow.Products.GetByTypeId(typeId).Select(p => p.ToDto()).ToList();
+            } // Thêm ngoặc }
         }
 
-        // Hàm này gọi xuống DAL để lấy danh sách sản phẩm
-        public List<Product> GetByTypeId(int typeId)
+        // 2. Dùng cho frmItemDetail, frmEditItem
+        public ProductDto GetById(int id)
         {
-            return _productDAL.GetByTypeId(typeId);
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+                return uow.Products.GetById(id).ToDto();
         }
 
-        // HÀM MỚI: Gọi xuống DAL để thực hiện tìm kiếm
-        public List<Product> SearchByNameAndTypeId(string name, int typeId)
+        // 3. Dùng cho frmMain (khi load "Tất cả")
+        public List<ProductDto> GetAllActiveProducts()
         {
-            return _productDAL.SearchByNameAndTypeId(name, typeId);
-        }
-        // HÀM MỚI: Xử lý nghiệp vụ thêm sản phẩm
-        public bool CreateProduct(Product product)
-        {
-            // Logic nghiệp vụ: không cho phép thêm sản phẩm có tên đã tồn tại
-            if (_productDAL.ProductExists(product.NameProduct))
-            {
-                // Trả về false nếu tên đã tồn tại
-                return false;
+            using (var uow = new UnitOfWork(DataContextFactory.Create())) { 
+                // (Bạn cần đảm bảo đã thêm hàm GetAllActive() vào ProductRepository.cs)
+                var query = uow.Products.GetAllActive();
+                return query.Select(p => p.ToDto()).ToList();
             }
-
-            // Nếu tên hợp lệ, gọi xuống DAL để lưu
-            return _productDAL.CreateProduct(product);
         }
-        // HÀM MỚI: Xử lý nghiệp vụ cập nhật sản phẩm
-        public bool UpdateProduct(Product product)
-        {
-            // Logic nghiệp vụ: không cho phép đổi tên thành một sản phẩm khác đã tồn tại
-            if (_productDAL.ProductExists(product.NameProduct, product.IdProduct))
-            {
-                return false; // Trả về false nếu tên đã tồn tại ở một sản phẩm khác
-            }
 
-            // Nếu tên hợp lệ, gọi xuống DAL để cập nhật
-            return _productDAL.UpdateProduct(product);
-        }
-        // HÀM BỔ SUNG: Lấy thông tin chi tiết một sản phẩm theo ID
-        public Product GetById(int id)
+        // 4. Dùng cho frmAddItem
+        public bool CreateProduct(ProductDto dto)
         {
-            return _productDAL.GetById(id);
-        }
-        // HÀM MỚI: Xử lý nghiệp vụ xóa hoặc ẩn sản phẩm
-        // Trả về chuỗi để báo cho UI biết hành động nào đã được thực hiện
-        public string DeleteProduct(int productId)
-        {
-            // Lấy thông tin sản phẩm
-            var product = _productDAL.GetById(productId);
-            if (product == null)
+            try
             {
-                return "NotFound"; // Sản phẩm không tồn tại
-            }
-
-            // Logic nghiệp vụ cốt lõi:
-            // Kiểm tra xem sản phẩm có trong hóa đơn nào không
-            if (_productDAL.IsProductInAnyOrder(productId))
-            {
-                // Nếu có, chỉ ẩn đi (chuyển IsActive = false)
-                product.IsActive = false;
-                if (_productDAL.UpdateProduct(product))
+                using (var uow = new UnitOfWork(DataContextFactory.Create()))
                 {
-                    return "Deactivated"; // Báo là đã ẩn
+
+                    // Map DTO -> DAL Entity
+                    var dalProduct = new Product
+                    {
+                        NameProduct = dto.NameProduct,
+                        PriceProduct = dto.PriceProduct,
+                        Descriptions = dto.Descriptions,
+                        Images = dto.Images,
+                        IdTypeProduct = dto.IdTypeProduct,
+                        CreatedBy = dto.CreatedBy, // Cần truyền IdEmployee từ UI
+                        IsActive = true
+                    };
+
+                    uow.Products.Insert(dalProduct);
+                    uow.Commit();
+                    return true;
                 }
             }
-            else
+            catch { return false; }
+        }
+
+        // 5. Dùng cho frmEditItem
+        public bool UpdateProduct(ProductDto dto)
+        {
+            try
             {
-                // Nếu không, xóa vĩnh viễn
-                if (_productDAL.DeleteProductById(productId))
+                using (var uow = new UnitOfWork(DataContextFactory.Create()))
                 {
-                    return "Deleted"; // Báo là đã xóa
+
+                    var pExisting = uow.Products.GetById(dto.IdProduct);
+                    if (pExisting == null) return false;
+
+                    // Map DTO -> DAL Entity (Dùng hàm Update của Repo)
+                    var pNew = new Product
+                    {
+                        NameProduct = dto.NameProduct,
+                        PriceProduct = dto.PriceProduct,
+                        Descriptions = dto.Descriptions,
+                        Images = dto.Images,
+                        IdTypeProduct = dto.IdTypeProduct
+                    };
+
+                    uow.Products.Update(pExisting, pNew);
+                    uow.Commit();
+                    return true;
                 }
             }
-
-            return "Error"; // Nếu có lỗi xảy ra
+            catch { return false; }
         }
-        // HÀM MỚI BỔ SUNG: Gọi DAL để lấy tất cả loại sản phẩm
-        public List<TypeProduct> GetAllTypes()
+
+        // 6. Dùng cho frmItemDetail (Sold Out)
+        public bool ToggleActive(int id)
         {
-            return _productDAL.GetAllTypes();
+            try
+            {
+                using (var uow = new UnitOfWork(DataContextFactory.Create()))
+                {
+                    var p = uow.Products.GetById(id);
+                    if (p == null) return false;
+
+                    p.IsActive = !p.IsActive; // Đảo ngược trạng thái
+                    uow.Commit();
+                    return true;
+                }
+            }
+            catch { return false; }
+        }
+
+        // 7. Dùng cho frmItemDetail (Delete)
+        public string DeleteProduct(int id)
+        {
+            try
+            {
+                using (var uow = new UnitOfWork(DataContextFactory.Create()))
+                {
+                    string result = uow.Products.SafeDelete(id);
+                    uow.Commit();
+                    return result; // "Deleted", "Deactivated", "NotFound"
+                }
+            }
+            catch { return "Error"; }
+        }
+
+        // 8. Dùng cho frmMain (Search)
+        public List<ProductDto> SearchByNameAndTypeId(string keyword, int typeId)
+        {
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+            {
+                var query = uow.Products.SearchByName(keyword);
+                if (typeId > 0)
+                {
+                    query = query.Where(p => p.IdTypeProduct == typeId);
+                }
+                return query.Select(p => p.ToDto()).ToList();
+            }
         }
     }
 }

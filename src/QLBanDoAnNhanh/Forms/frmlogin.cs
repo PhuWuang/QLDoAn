@@ -1,4 +1,4 @@
-﻿using QLBanDoAnNhanh.Models;
+﻿using QLBanDoAnNhanh.BLL.DTOs;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -11,7 +11,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml.Linq;
 using QLBanDoAnNhanh.BLL; // Để sử dụng EmployeeService
-using QLBanDoAnNhanh.Models; // Để sử dụng model Employee
 
 namespace QLBanDoAnNhanh
 {
@@ -62,54 +61,37 @@ namespace QLBanDoAnNhanh
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            // Các bước kiểm tra ô nhập trống vẫn giữ nguyên
-            string pattern = @"^([\w\.\-]+)@([\w\-]+)((\.\w{2,3})+)$";
-            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex(pattern);
-            if (string.IsNullOrEmpty(tbEmail.Text))
+            string email = tbEmail.Text.Trim();
+            string password = tbPass.Text.Trim();
+
+            if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
             {
-                errorCheck.SetError(tbEmail, "Cannot empty!");
-                return; // Dừng lại nếu có lỗi
-            }
-            else if (regex.IsMatch(tbEmail.Text) == false)
-            {
-                errorCheck.SetError(tbEmail, "Not formating email!");
+                MessageBox.Show("Vui lòng nhập email và mật khẩu.", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            else
-            {
-                errorCheck.SetError(tbEmail, "");
-            }
-            if (string.IsNullOrEmpty(tbPass.Text))
-            {
-                errorCheck.SetError(tbPass, "Cannot empty!");
-                return;
-            }
-            else
-            {
-                errorCheck.SetError(tbPass, "");
-            }
 
-            // ---- PHẦN LOGIC MỚI ----
-            // 1. Khởi tạo EmployeeService từ tầng BLL
-            var employeeService = new EmployeeService();
+            // 1. Gọi EmployeeService (đã sửa ở Bước 4)
+            var empService = new EmployeeService();
+            var loginResult = empService.ValidateLogin(email, password);
 
-            // 2. Gọi hàm ValidateLogin để kiểm tra
-            //    Hàm này sẽ trả về thông tin Employee nếu thành công, hoặc null nếu thất bại
-            Employee loggedInEmployee = employeeService.ValidateLogin(tbEmail.Text, tbPass.Text);
-
-            // 3. Kiểm tra kết quả
-            if (loggedInEmployee != null)
+            // 2. Kiểm tra kết quả trả về từ BLL
+            if (loginResult.Success)
             {
-                // Đăng nhập thành công!
-                // Chúng ta có được Id của nhân viên từ loggedInEmployee.IdEmployee
-                Form frmmain = new frmMain(loggedInEmployee.IdEmployee, this);
+                // 3. ĐĂNG NHẬP THÀNH CÔNG
+                // Lấy EmployeeDto từ kết quả
+                EmployeeDto userDto = loginResult.Employee;
+
+                MessageBox.Show("Đăng nhập thành công!", "Thông báo", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // 4. Mở frmMain và truyền EmployeeDto (không phải Employee cũ)
+                frmMain f = new frmMain(userDto, this); // Dòng này sẽ báo lỗi, ta sẽ sửa frmMain ở bước sau
+                f.Show();
                 this.Hide();
-                frmmain.Show();
             }
             else
             {
-                // Đăng nhập thất bại
-                MessageBox.Show("Login unsuccessful. Please check your username and password!");
+                // 5. ĐĂNG NHẬP THẤT BẠI
+                MessageBox.Show(loginResult.Message, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
