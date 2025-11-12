@@ -1,4 +1,4 @@
-﻿using QLBanDoAnNhanh.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -10,23 +10,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using QLBanDoAnNhanh.BLL;
+using QLBanDoAnNhanh.BLL.DTOs;
 
 namespace QLBanDoAnNhanh
 {
     public partial class frmAddItem : Form
     {
         private ProductService _productService;
+        private TypeProductService _typeProductService; // <-- THÊM DÒNG NÀY
         private int _idEmployee;
         public frmAddItem(int idEmployee)
         {
             InitializeComponent();
             _productService = new ProductService();
+            _typeProductService = new TypeProductService();
             _idEmployee = idEmployee;
         }
 
         private void frmAddItem_Load(object sender, EventArgs e)
         {
-            var typeProduct = _productService.GetAllTypes();
+            var typeProduct = _typeProductService.GetActiveTypesOrdered();
             cbType.DataSource = typeProduct;
             cbType.DisplayMember = "NameType";
             cbType.ValueMember = "IdTypeProduct";
@@ -63,7 +66,7 @@ namespace QLBanDoAnNhanh
 
         private void btnAdd_Click(object sender, EventArgs e)
         {
-            // 1. Thu thập dữ liệu từ Form và kiểm tra (phần này tương tự code cũ)
+            // 1. Thu thập dữ liệu từ Form và kiểm tra (giữ nguyên)
             if (string.IsNullOrWhiteSpace(tbName.Text))
             {
                 errorCheck.SetError(tbName, "Tên không được để trống!");
@@ -85,14 +88,14 @@ namespace QLBanDoAnNhanh
                 return;
             }
 
-            // 2. Tạo đối tượng Product từ dữ liệu đã thu thập
-            var product = new Product
+            // 2. Tạo đối tượng ProductDto (Không phải Product cũ)
+            var productDto = new ProductDto // <-- SỬA 1: Đổi tên class
             {
                 NameProduct = tbName.Text.Trim(),
                 PriceProduct = price,
                 Descriptions = tbDecript.Text.Trim(),
                 IdTypeProduct = (int)cbType.SelectedValue,
-                IdEmployee = _idEmployee,
+                CreatedBy = _idEmployee, // <-- SỬA 2: Đổi "IdEmployee" thành "CreatedBy"
                 IsActive = true
             };
 
@@ -100,11 +103,11 @@ namespace QLBanDoAnNhanh
             using (var ms = new System.IO.MemoryStream())
             {
                 picProduct.Image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                product.Images = ms.ToArray();
+                productDto.Images = ms.ToArray();
             }
 
-            // 3. Gọi xuống BLL để xử lý
-            bool success = _productService.CreateProduct(product);
+            // 3. Gọi xuống BLL (BLL đã sẵn sàng nhận DTO)
+            bool success = _productService.CreateProduct(productDto);
 
             // 4. Xử lý kết quả trả về
             if (success)
@@ -115,7 +118,7 @@ namespace QLBanDoAnNhanh
             }
             else
             {
-                // Lỗi có thể do tên trùng lặp hoặc do lỗi lưu CSDL
+                // Lỗi có thể do tên trùng lặp (UNIQUE constraint)
                 MessageBox.Show("Thêm sản phẩm thất bại. Tên sản phẩm có thể đã tồn tại.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

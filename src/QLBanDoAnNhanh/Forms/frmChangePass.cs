@@ -1,4 +1,4 @@
-﻿using QLBanDoAnNhanh.Models;
+﻿
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -27,26 +27,29 @@ namespace QLBanDoAnNhanh
 
         private void btnConfr_Click(object sender, EventArgs e)
         {
-            // 1. Input validation (remains the same)
+            // 1. Input validation (Giữ nguyên)
             if (string.IsNullOrWhiteSpace(tbOldpass.Text) || string.IsNullOrWhiteSpace(tbNewpass.Text))
             {
-                MessageBox.Show("Old and new passwords cannot be empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Mật khẩu cũ và mới không được để trống.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
-            // 2. Call the BLL to handle the logic
+            // 2. Gọi BLL
             var employeeService = new EmployeeService();
-            bool success = employeeService.ChangePassword(_idEmployee, tbOldpass.Text, tbNewpass.Text);
 
-            // 3. Handle the result
-            if (success)
+            // SỬA 1: BLL trả về string (thông báo), không phải bool
+            string resultMessage = employeeService.ChangePassword(_idEmployee, tbOldpass.Text, tbNewpass.Text);
+
+            // 3. Xử lý kết quả (string)
+            if (resultMessage == "Đổi mật khẩu thành công.")
             {
-                MessageBox.Show("Password changed successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show(resultMessage, "Thành công", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 this.Close();
             }
             else
             {
-                MessageBox.Show("Failed to change password. Please check your old password.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                // Hiển thị thông báo lỗi cụ thể từ BLL (ví dụ: "Mật khẩu cũ không đúng.")
+                MessageBox.Show(resultMessage, "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void picShowHide2_Click(object sender, EventArgs e)

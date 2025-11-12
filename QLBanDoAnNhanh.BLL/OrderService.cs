@@ -1,88 +1,94 @@
-﻿using QLBanDoAnNhanh.DAL;
-using QLBanDoAnNhanh.DAL.Models;
-using QLBanDoAnNhanh.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using QLBanDoAnNhanh.BLL.DTOs;
+using QLBanDoAnNhanh.BLL.Mappers;
+using QLBanDoAnNhanh.DAL;
+using QLBanDoAnNhanh.DAL.Repositories;
 
 namespace QLBanDoAnNhanh.BLL
 {
+    // Đổi namespace thành .Services nếu bạn muốn
     public class OrderService
     {
-        private OrderDAL _orderDAL;
-        private ProductDAL _productDAL; // Cần ProductDAL để lấy giá sản phẩm
+        // 1. Dùng cho frmMain (Thanh toán)
+        // Dán code này để THAY THẾ hàm CreateOrder cũ
 
-        public OrderService()
+        public OrderDto CreateOrder(int employeeId, Dictionary<int, (int qty, decimal price)> items)
         {
-            _orderDAL = new OrderDAL();
-            _productDAL = new ProductDAL();
-        }
+            var lines = items.Select(item => (
+                productId: item.Key,
+                qty: item.Value.qty,
+                unitPrice: item.Value.price
+            )).ToList();
 
-        // Hàm này nhận ID nhân viên và một Dictionary chứa <ID sản phẩm, Số lượng>
-        public bool CreateOrder(int employeeId, Dictionary<int, int> items)
-        {
-            // 1. Tạo đối tượng Order chính
-            var order = new Order
+            if (!lines.Any())
             {
-                IdEmployee = employeeId,
-                CreateDate = DateTime.Now,
-                OrderDetails = new List<OrderDetail>()
-            };
-
-            decimal totalPrice = 0;
-
-            // 2. Lặp qua các món hàng để tạo OrderDetail và tính tổng tiền
-            foreach (var item in items)
-            {
-                var productId = item.Key;
-                var quantity = item.Value;
-
-                // Lấy thông tin sản phẩm từ CSDL để có giá chính xác
-                // Điều này đảm bảo giá luôn đúng, dù giá trên giao diện có thể cũ
-                var product = _productDAL.GetById(productId); // CHÚNG TA SẼ THÊM HÀM NÀY SAU
-                if (product == null)
-                {
-                    // Nếu một sản phẩm không tồn tại, hủy toàn bộ giao dịch
-                    return false;
-                }
-
-                var orderDetail = new OrderDetail
-                {
-                    IdProduct = productId,
-                    quantity = quantity
-                    // IdOrder sẽ được EF tự động gán khi lưu
-                };
-                order.OrderDetails.Add(orderDetail);
-
-                // Cộng dồn vào tổng tiền hóa đơn
-                totalPrice += (product.PriceProduct.Value * quantity);
+                throw new Exception("Không thể tạo đơn hàng rỗng.");
             }
 
-            // 3. Tính thuế VAT 5% và gán tổng tiền cuối cùng cho Order
-            order.Total = totalPrice * 1.05m;
+            int newOrderId = 0; // <-- SỬA 1: Khai báo ID ở ngoài
 
-            // 4. Gửi đối tượng Order hoàn chỉnh xuống DAL để lưu
-            return _orderDAL.CreateOrder(order);
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+            {
+                var dalOrder = uow.Orders.CreateOrder(employeeId, lines);
+                uow.Commit();
+                newOrderId = dalOrder.IdOrder; // <-- SỬA 2: Gán ID vào biến ngoài
+            }
+
+            // Lấy lại đầy đủ thông tin (kèm chi tiết) để trả về UI
+            using (var uow2 = new UnitOfWork(DataContextFactory.CreateWithIncludes()))
+            {
+                // SỬA 3: Dùng newOrderId
+                var newOrder = uow2.Orders.GetByIdWithDetails(newOrderId);
+                return newOrder.ToDto();
+            }
         }
-        // HÀM MỚI: Gọi xuống DAL để lấy danh sách hóa đơn
-        public List<Order> GetAllOrders()
+
+        // 2. Dùng cho frmInvoiceDetail
+        public OrderDto GetOrderById(int orderId)
         {
-            return _orderDAL.GetAllOrders();
+            using (var uow = new UnitOfWork(DataContextFactory.CreateWithIncludes()))
+            {
+                var dalOrder = uow.Orders.GetByIdWithDetails(orderId);
+                return dalOrder.ToDto();
+            }
         }
-        // HÀM MỚI: Gọi xuống DAL để lấy chi tiết hóa đơn
-        public Order GetOrderById(int orderId)
+
+        // 3. Dùng cho frmStatistics
+        public decimal GetTotalRevenueByDateRange(DateTime from, DateTime to)
         {
-            return _orderDAL.GetOrderById(orderId);
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+            {
+                var toDate = to.Date.AddDays(1);
+                return uow.Orders.QueryByDateRange(from.Date, toDate)
+                                 .Sum(o => (decimal?)o.Total) ?? 0m;
+            }
         }
-        // HÀM MỚI: Gọi xuống DAL để tìm kiếm hóa đơn
-        public List<Order> SearchOrders(int? orderId, DateTime? startDate, DateTime? endDate)
+
+        // 4. Dùng cho frmInvoiceList (Search)
+        public List<OrderDto> SearchOrders(int? orderId, DateTime from, DateTime to)
         {
-            return _orderDAL.SearchOrders(orderId, startDate, endDate);
+            using (var uow = new UnitOfWork(DataContextFactory.CreateWithIncludes()))
+            {
+                var toDate = to.Date.AddDays(1);
+                var query = uow.Orders.QueryByDateRange(from.Date, toDate);
+
+                if (orderId.HasValue)
+                {
+                    query = query.Where(o => o.IdOrder == orderId.Value);
+                }
+
+                return query.OrderByDescending(o => o.CreateDate)
+                            .Select(o => o.ToDto())
+                            .ToList();
+            }
         }
-        // HÀM MỚI: Gọi xuống DAL để lấy tổng doanh thu
-        public decimal GetTotalRevenueByDateRange(DateTime startDate, DateTime endDate)
+
+        // 5. Dùng cho frmInvoiceList (Load)
+        public List<OrderDto> GetAllOrders()
         {
-            return _orderDAL.GetTotalRevenueByDateRange(startDate, endDate);
+            return SearchOrders(null, DateTime.MinValue, DateTime.MaxValue);
         }
     }
 }
