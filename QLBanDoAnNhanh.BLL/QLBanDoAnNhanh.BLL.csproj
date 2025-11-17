@@ -64,6 +64,7 @@
     <Compile Include="DTOs\OrderDto.cs" />
     <Compile Include="DTOs\OrderLineDto.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
+    <Compile Include="DTOs\RoleDto.cs" />
     <Compile Include="DTOs\TopProductReportItem.cs" />
     <Compile Include="DTOs\TypeProductDto.cs" />
     <Compile Include="EmployeeService.cs" />

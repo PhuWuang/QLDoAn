@@ -32,7 +32,8 @@ namespace QLBanDoAnNhanh.BLL.Mappers
             Email = e.Email,
             RoleId = e.IdRole,
             RoleName = e.Role?.NameRole,
-            IsActive = e.IsActive
+            IsActive = e.IsActive,
+            CreatedAt = e.CreatedAt
         };
 
         public static OrderDto ToDto(this Order o) => o == null ? null : new OrderDto

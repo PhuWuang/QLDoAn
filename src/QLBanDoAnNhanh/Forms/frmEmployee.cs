@@ -3,7 +3,6 @@ using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using QLBanDoAnNhanh.BLL;
-using QLBanDoAnNhanh.DAL;
 
 namespace QLBanDoAnNhanh.Forms
 {
@@ -28,17 +27,11 @@ namespace QLBanDoAnNhanh.Forms
         // =====================================================================
         private void LoadRoles()
         {
-            using (var db = DataContextFactory.Create())
-            {
-                var roles = db.Roles
-                              .OrderBy(r => r.IdRole)
-                              .Select(r => new { r.IdRole, r.NameRole })
-                              .ToList();
+            var roles = _employeeService.GetAllRoles();
 
-                cboRole.DataSource = roles;
-                cboRole.DisplayMember = "NameRole";
-                cboRole.ValueMember = "IdRole";
-            }
+            cboRole.DataSource = roles;
+            cboRole.DisplayMember = "NameRole";
+            cboRole.ValueMember = "IdRole";
         }
 
         // =====================================================================
@@ -63,6 +56,12 @@ namespace QLBanDoAnNhanh.Forms
             }
 
             dgvEmployees.DataSource = list;
+            // Định dạng cột Ngày tạo
+            if (dgvEmployees.Columns["colCreatedAt"] != null)
+            {
+                dgvEmployees.Columns["colCreatedAt"].DefaultCellStyle.Format = "dd/MM/yyyy HH:mm";
+                // Hoặc chỉ ngày: "dd/MM/yyyy"
+            }
 
             // Ẩn ID, RoleId cho gọn
             if (dgvEmployees.Columns["IdEmployee"] != null)

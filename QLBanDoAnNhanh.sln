@@ -9,11 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLBanDoAnNhanh.DAL", "QLBan
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QLBanDoAnNhanh.BLL", "QLBanDoAnNhanh.BLL\QLBanDoAnNhanh.BLL.csproj", "{7C250138-8479-4575-8DAA-3EEA1AB6BD78}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Database", "Database", "{7FCC72DD-8A45-47F4-A126-AB461E9B7653}"
-	ProjectSection(SolutionItems) = preProject
-		PosFastFoods.sql = PosFastFoods.sql
-	EndProjectSection
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

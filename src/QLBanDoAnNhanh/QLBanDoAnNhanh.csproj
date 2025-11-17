@@ -118,11 +118,23 @@
     <Compile Include="Forms\frmChangePass.Designer.cs">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmCredits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCredits.Designer.cs">
+      <DependentUpon>frmCredits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmEditItem.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmEditItem.Designer.cs">
       <DependentUpon>frmEditItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEmployee.Designer.cs">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmInvoiceDetail.cs">
       <SubType>Form</SubType>
@@ -172,6 +184,12 @@
     <Compile Include="Forms\frmReport_TopProducts.Designer.cs">
       <DependentUpon>frmReport_TopProducts.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -194,8 +212,14 @@
     <EmbeddedResource Include="Forms\frmChangePass.resx">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCredits.resx">
+      <DependentUpon>frmCredits.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditItem.resx">
       <DependentUpon>frmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEmployee.resx">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInvoiceDetail.resx">
       <DependentUpon>frmInvoiceDetail.cs</DependentUpon>
@@ -220,6 +244,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmReport_TopProducts.resx">
       <DependentUpon>frmReport_TopProducts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmStatistics.resx">
       <DependentUpon>frmStatistics.cs</DependentUpon>

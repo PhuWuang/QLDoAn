@@ -72,6 +72,12 @@ namespace QLBanDoAnNhanh
                 var emp = _employeeService.GetEmployeeById(_idEmployee);
                 lbUser.Text = emp?.NameEmployee ?? "User"; // Dùng "?." để tránh lỗi null
             }
+            if (_roleName != "Admin")
+            {
+                btnAdditem.Enabled = false;      // Ẩn hẳn nút
+                                                 // Nếu muốn thì có thể thêm:
+                                                 // btnAdditem.Enabled = false;
+            }
         }
 
         private void btnFoods_Click(object sender, EventArgs e)
@@ -530,8 +536,24 @@ namespace QLBanDoAnNhanh
             btnAdditem.FillColor2 = Color.Transparent;
             btnSetting.FillColor = Color.FromArgb(179, 229, 252);
             btnSetting.FillColor2 = Color.FromArgb(187, 222, 251);
-            Form frmchangePass = new frmChangePass(_idEmployee);
-            frmchangePass.ShowDialog();
+            if (_roleName == "Admin")
+            {
+                // Admin vào frmSetting (có 2 lựa chọn như bạn thiết kế)
+                using (var f = new frmSetting(_idEmployee, _roleName))
+                {
+                    f.StartPosition = FormStartPosition.CenterParent;
+                    f.ShowDialog(this);
+                }
+            }
+            else
+            {
+                // Nhân viên thường chỉ được phép đổi mật khẩu
+                using (var f = new frmChangePass(_idEmployee))
+                {
+                    f.StartPosition = FormStartPosition.CenterParent;
+                    f.ShowDialog(this);
+                }
+            }
         }
 
         private void btnInvoice_Click(object sender, EventArgs e)
@@ -566,68 +588,6 @@ namespace QLBanDoAnNhanh
                 f.StartPosition = FormStartPosition.CenterParent;
                 f.ShowDialog(this);
             }
-        }
-
-        private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
-        {
-            // THÊM: Dùng văn hóa "vi-VN" để định dạng tiền
-            var culture = new CultureInfo("vi-VN");
-
-            // === PHẦN TIÊU ĐỀ (HEADER) ===
-            e.Graphics.DrawString("FOODS HORI", new Font("Arial", 28, FontStyle.Bold), Brushes.Black, new Point(270, 10));
-            e.Graphics.DrawString("Invoice", new Font("Arial", 18, FontStyle.Bold), Brushes.Black, new Point(350, 50));
-            e.Graphics.DrawString("Phone: +84396531897", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 80));
-            e.Graphics.DrawString("Email: foods-hori@gmail.com", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 110));
-            e.Graphics.DrawString("Address: 449 Street, Tang Nhon Phu A Ward, Thu Đuc City", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 140));
-            e.Graphics.DrawString("______________________________________________________________________________________________________________________________________________________", new Font("Arial", 13, FontStyle.Bold), Brushes.Black, new Point(0, 160));
-
-            e.Graphics.DrawString("Date: " + DateTime.Now.ToString("dd/MM/yyyy HH:mm"), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 190));
-
-            // SỬA LỖI 3: In tên nhân viên (lấy từ biến đã lưu khi login)
-            e.Graphics.DrawString("Employee: " + _nameEmployee, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 220));
-
-            // === PHẦN CHI TIẾT HÓA ĐƠN (BODY) ===
-            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 250));
-            e.Graphics.DrawString("Item", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(60, 280));
-            e.Graphics.DrawString("Qty", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(250, 280));
-            e.Graphics.DrawString("Price", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(450, 280));
-            e.Graphics.DrawString("Amount", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(660, 280));
-            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, 310));
-
-            int y = 310;
-            decimal subTotal = 0; // SỬA LỖI 2: Dùng 1 biến local duy nhất
-
-            foreach (Control controlOrder in flpOrder.Controls)
-            {
-                if (controlOrder is ItemOrder order)
-                {
-                    e.Graphics.DrawString(order._Name, new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(60, y + 30));
-                    e.Graphics.DrawString(order.Quantity.ToString(), new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(250, y + 30));
-
-                    // SỬA LỖI 1: Dùng "N0" và "VNĐ"
-                    e.Graphics.DrawString(order.Price.ToString("N0", culture) + " VNĐ", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(450, y + 30));
-                    e.Graphics.DrawString((order.Quantity * order.Price).ToString("N0", culture) + " VNĐ", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(660, y + 30));
-
-                    y += 30;
-                    subTotal += (order.Quantity * order.Price); // Luôn dùng biến local
-                }
-            }
-
-            // === PHẦN TỔNG CỘNG (FOOTER) ===
-            // SỬA LỖI 2: Tính toán dựa trên biến local
-            decimal vatAmount = (decimal)0.05 * subTotal;
-            decimal lastPrice = subTotal + vatAmount;
-
-            e.Graphics.DrawString("----------------------------------------------------------------------------------------------------------------------", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(50, y + 30));
-
-            e.Graphics.DrawString("Bill total", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(60, y + 60));
-            e.Graphics.DrawString(subTotal.ToString("N0", culture) + " VNĐ", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(660, y + 60));
-
-            e.Graphics.DrawString("VAT(5%)", new Font("Arial", 12, FontStyle.Regular), Brushes.Black, new Point(60, y + 90));
-            e.Graphics.DrawString("+ " + vatAmount.ToString("N0", culture) + " VNĐ", new Font("Arial", 12, FontStyle.Regular), Brushes.Black, new Point(660, y + 90));
-
-            e.Graphics.DrawString("Last bill", new Font("Arial", 18, FontStyle.Regular), Brushes.Black, new Point(60, y + 120));
-            e.Graphics.DrawString(lastPrice.ToString("N0", culture) + " VNĐ", new Font("Arial", 13, FontStyle.Regular), Brushes.Black, new Point(660, y + 120));
         }
 
         private void guna2GradientTileButton1_Click(object sender, EventArgs e)
@@ -719,6 +679,13 @@ namespace QLBanDoAnNhanh
             {
                 f.ShowDialog();   // mở dạng dialog, đóng lại thì quay về form chính
             }
+        }
+
+        private void guna2PictureBox3_Click(object sender, EventArgs e)
+        {
+            frmCredits f = new frmCredits();
+            f.StartPosition = FormStartPosition.CenterParent; // cho nó hiện giữa frmMain
+            f.ShowDialog(this); // hiện dạng cửa sổ con (modal)
         }
     }
 }

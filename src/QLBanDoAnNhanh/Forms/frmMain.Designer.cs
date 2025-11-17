@@ -176,6 +176,7 @@
             // 
             // guna2PictureBox3
             // 
+            this.guna2PictureBox3.Cursor = System.Windows.Forms.Cursors.Hand;
             this.guna2PictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("guna2PictureBox3.Image")));
             this.guna2PictureBox3.ImageRotate = 0F;
             this.guna2PictureBox3.Location = new System.Drawing.Point(15, 17);
@@ -184,6 +185,7 @@
             this.guna2PictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.guna2PictureBox3.TabIndex = 7;
             this.guna2PictureBox3.TabStop = false;
+            this.guna2PictureBox3.Click += new System.EventHandler(this.guna2PictureBox3_Click);
             // 
             // btnAdditem
             // 
@@ -716,11 +718,7 @@
             this.flpOrder.Name = "flpOrder";
             this.flpOrder.Size = new System.Drawing.Size(533, 286);
             this.flpOrder.TabIndex = 7;
-            // 
-            // printDocument
-            // 
-            this.printDocument.PrintPage += new System.Drawing.Printing.PrintPageEventHandler(this.printDocument_PrintPage);
-            // 
+            //
             // printPreview
             // 
             this.printPreview.AutoScrollMargin = new System.Drawing.Size(0, 0);

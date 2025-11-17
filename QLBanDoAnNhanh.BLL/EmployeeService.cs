@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using QLBanDoAnNhanh.BLL.DTOs;
 using QLBanDoAnNhanh.BLL.Mappers;
@@ -89,5 +90,53 @@ namespace QLBanDoAnNhanh.BLL
                           .ToList();
             }
         }
+        public string CreateEmployee(string name, string email, string password, int roleId, bool isActive)
+        {
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+            {
+                // 1. Kiểm tra email trùng
+                var existing = uow.Employees.GetByEmail(email);
+                if (existing != null)
+                {
+                    return "Email đã tồn tại, vui lòng dùng email khác.";
+                }
+
+                // 2. Hash mật khẩu (tùy anh đang dùng class nào)
+                var (hash, salt) = CryptoHelper.HashPassword(password);
+                // ví dụ: trả về Hash + Salt, anh dùng đúng class hiện có trong BLL.Sercurity
+
+                var emp = new Employee
+                {
+                    NameEmployee = name,
+                    Email = email,
+                    PasswordHash = hash,
+                    PasswordSalt = salt,
+                    IdRole = roleId,
+                    IsActive = isActive,
+                    CreatedAt = DateTime.Now
+                };
+
+                uow.Employees.Insert(emp);
+                uow.Commit();
+
+                return "Tạo tài khoản nhân viên thành công.";
+            }
+        }
+        public List<RoleDto> GetAllRoles()
+        {
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+            {
+                return uow.Db.Roles
+                             .OrderBy(r => r.IdRole)
+                             .Select(r => new RoleDto
+                             {
+                                 IdRole = r.IdRole,
+                                 NameRole = r.NameRole
+                             })
+                             .ToList();
+            }
+        }
+
+
     }
 }

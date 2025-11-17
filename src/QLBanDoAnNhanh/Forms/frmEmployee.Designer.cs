@@ -117,7 +117,7 @@
             this.lblTitle.Location = new System.Drawing.Point(286, 17);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(389, 37);
+            this.lblTitle.Size = new System.Drawing.Size(480, 46);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Quản lý tài khoản nhân viên";
             // 
@@ -211,7 +211,7 @@
             this.btnSearchEmployee.Location = new System.Drawing.Point(326, 20);
             this.btnSearchEmployee.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnSearchEmployee.Name = "btnSearchEmployee";
-            this.btnSearchEmployee.Size = new System.Drawing.Size(62, 24);
+            this.btnSearchEmployee.Size = new System.Drawing.Size(64, 29);
             this.btnSearchEmployee.TabIndex = 2;
             this.btnSearchEmployee.Text = "Search";
             this.btnSearchEmployee.UseVisualStyleBackColor = false;
@@ -224,7 +224,7 @@
             this.lblSearchEmployee.Location = new System.Drawing.Point(4, 16);
             this.lblSearchEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchEmployee.Name = "lblSearchEmployee";
-            this.lblSearchEmployee.Size = new System.Drawing.Size(64, 21);
+            this.lblSearchEmployee.Size = new System.Drawing.Size(79, 28);
             this.lblSearchEmployee.TabIndex = 0;
             this.lblSearchEmployee.Text = "Name: ";
             // 
@@ -237,7 +237,7 @@
             this.btnReloadEmployee.Location = new System.Drawing.Point(390, 20);
             this.btnReloadEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnReloadEmployee.Name = "btnReloadEmployee";
-            this.btnReloadEmployee.Size = new System.Drawing.Size(57, 23);
+            this.btnReloadEmployee.Size = new System.Drawing.Size(66, 29);
             this.btnReloadEmployee.TabIndex = 3;
             this.btnReloadEmployee.Text = "Reload";
             this.btnReloadEmployee.UseVisualStyleBackColor = false;
@@ -300,7 +300,7 @@
             this.lblNameEmployee.Location = new System.Drawing.Point(21, 36);
             this.lblNameEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameEmployee.Name = "lblNameEmployee";
-            this.lblNameEmployee.Size = new System.Drawing.Size(165, 25);
+            this.lblNameEmployee.Size = new System.Drawing.Size(210, 32);
             this.lblNameEmployee.TabIndex = 13;
             this.lblNameEmployee.Text = "Họ tên nhân viên";
             // 
@@ -329,7 +329,7 @@
             this.chkIsActive.Location = new System.Drawing.Point(243, 483);
             this.chkIsActive.Margin = new System.Windows.Forms.Padding(4);
             this.chkIsActive.Name = "chkIsActive";
-            this.chkIsActive.Size = new System.Drawing.Size(217, 25);
+            this.chkIsActive.Size = new System.Drawing.Size(274, 32);
             this.chkIsActive.TabIndex = 11;
             this.chkIsActive.Text = "Tài khoản đang hoạt động";
             this.chkIsActive.UseVisualStyleBackColor = false;
@@ -341,7 +341,7 @@
             this.cboRole.Location = new System.Drawing.Point(25, 411);
             this.cboRole.Margin = new System.Windows.Forms.Padding(4);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(176, 33);
+            this.cboRole.Size = new System.Drawing.Size(176, 40);
             this.cboRole.TabIndex = 10;
             // 
             // lblRole
@@ -353,7 +353,7 @@
             this.lblRole.Location = new System.Drawing.Point(20, 382);
             this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(71, 25);
+            this.lblRole.Size = new System.Drawing.Size(89, 32);
             this.lblRole.TabIndex = 9;
             this.lblRole.Text = "Vai trò";
             // 
@@ -364,7 +364,7 @@
             this.txtConfirmPasswordEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPasswordEmployee.Name = "txtConfirmPasswordEmployee";
             this.txtConfirmPasswordEmployee.PasswordChar = '●';
-            this.txtConfirmPasswordEmployee.Size = new System.Drawing.Size(435, 33);
+            this.txtConfirmPasswordEmployee.Size = new System.Drawing.Size(435, 39);
             this.txtConfirmPasswordEmployee.TabIndex = 8;
             this.txtConfirmPasswordEmployee.UseSystemPasswordChar = true;
             // 
@@ -377,7 +377,7 @@
             this.lblConfirmPasswordEmployee.Location = new System.Drawing.Point(20, 297);
             this.lblConfirmPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmPasswordEmployee.Name = "lblConfirmPasswordEmployee";
-            this.lblConfirmPasswordEmployee.Size = new System.Drawing.Size(181, 25);
+            this.lblConfirmPasswordEmployee.Size = new System.Drawing.Size(232, 32);
             this.lblConfirmPasswordEmployee.TabIndex = 7;
             this.lblConfirmPasswordEmployee.Text = "Xác nhận mật khẩu";
             // 
@@ -388,7 +388,7 @@
             this.txtPasswordEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtPasswordEmployee.Name = "txtPasswordEmployee";
             this.txtPasswordEmployee.PasswordChar = '●';
-            this.txtPasswordEmployee.Size = new System.Drawing.Size(435, 33);
+            this.txtPasswordEmployee.Size = new System.Drawing.Size(435, 39);
             this.txtPasswordEmployee.TabIndex = 6;
             this.txtPasswordEmployee.UseSystemPasswordChar = true;
             // 
@@ -401,7 +401,7 @@
             this.lblPasswordEmployee.Location = new System.Drawing.Point(21, 211);
             this.lblPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPasswordEmployee.Name = "lblPasswordEmployee";
-            this.lblPasswordEmployee.Size = new System.Drawing.Size(96, 25);
+            this.lblPasswordEmployee.Size = new System.Drawing.Size(121, 32);
             this.lblPasswordEmployee.TabIndex = 5;
             this.lblPasswordEmployee.Text = "Mật khẩu";
             // 
@@ -411,7 +411,7 @@
             this.txtEmailEmployee.Location = new System.Drawing.Point(25, 155);
             this.txtEmailEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmailEmployee.Name = "txtEmailEmployee";
-            this.txtEmailEmployee.Size = new System.Drawing.Size(435, 33);
+            this.txtEmailEmployee.Size = new System.Drawing.Size(435, 39);
             this.txtEmailEmployee.TabIndex = 4;
             // 
             // lblEmailEmployee
@@ -423,7 +423,7 @@
             this.lblEmailEmployee.Location = new System.Drawing.Point(20, 126);
             this.lblEmailEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailEmployee.Name = "lblEmailEmployee";
-            this.lblEmailEmployee.Size = new System.Drawing.Size(59, 25);
+            this.lblEmailEmployee.Size = new System.Drawing.Size(76, 32);
             this.lblEmailEmployee.TabIndex = 3;
             this.lblEmailEmployee.Text = "Email";
             // 
@@ -433,7 +433,7 @@
             this.txtNameEmployee.Location = new System.Drawing.Point(25, 65);
             this.txtNameEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtNameEmployee.Name = "txtNameEmployee";
-            this.txtNameEmployee.Size = new System.Drawing.Size(435, 33);
+            this.txtNameEmployee.Size = new System.Drawing.Size(435, 39);
             this.txtNameEmployee.TabIndex = 2;
             // 
             // frmEmployee
