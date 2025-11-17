@@ -198,6 +198,9 @@
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmSetting.resx">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmStatistics.resx">
       <DependentUpon>frmStatistics.cs</DependentUpon>
     </EmbeddedResource>

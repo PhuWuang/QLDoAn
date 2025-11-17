@@ -517,6 +517,7 @@ namespace QLBanDoAnNhanh
 
         private void btnSetting_Click(object sender, EventArgs e)
         {
+            // Giữ nguyên phần reset màu
             btnFoods.FillColor = Color.Transparent;
             btnFoods.FillColor2 = Color.Transparent;
             btnDrink.FillColor = Color.Transparent;
@@ -529,10 +530,27 @@ namespace QLBanDoAnNhanh
             btnCombo.FillColor2 = Color.Transparent;
             btnAdditem.FillColor = Color.Transparent;
             btnAdditem.FillColor2 = Color.Transparent;
+
             btnSetting.FillColor = Color.FromArgb(179, 229, 252);
             btnSetting.FillColor2 = Color.FromArgb(187, 222, 251);
-            Form frmchangePass = new frmChangePass(_idEmployee);
-            frmchangePass.ShowDialog();
+
+            // RÀNG BUỘC THEO ROLE
+            if (_roleName == "Admin")
+            {
+                // Quản lí: mở frmSetting có 2 option
+                using (var f = new frmSetting(_idEmployee, _roleName))
+                {
+                    f.ShowDialog();
+                }
+            }
+            else
+            {
+                // Thu ngân / user thường: đi thẳng đến đổi mật khẩu
+                using (var f = new frmChangePass(_idEmployee))
+                {
+                    f.ShowDialog();
+                }
+            }
         }
 
         private void btnInvoice_Click(object sender, EventArgs e)
