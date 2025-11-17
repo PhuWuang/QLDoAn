@@ -32,7 +32,10 @@ namespace QLBanDoAnNhanh
         public decimal Price
         {
             get { return _price; }
-            set { _price = value; lbRootPrice.Text = value.ToString("0.00") + "$"; }
+            set {
+                _price = value;
+                lbRootPrice.Text = value.ToString("n0") + " VNĐ";
+            }
         }
 
         public string _Name

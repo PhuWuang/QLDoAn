@@ -8,7 +8,7 @@ namespace QLBanDoAnNhanh.DAL.Repositories
         public ProductRepository(PosFastFoodsDataContext db) => _db = db;
 
         public IQueryable<Product> GetByTypeId(int typeId) =>
-            _db.Products.Where(p => p.IdTypeProduct == typeId && p.IsActive);
+            _db.Products.Where(p => p.IdTypeProduct == typeId);
 
         public IQueryable<Product> SearchByName(string keyword) =>
             _db.Products.Where(p => p.IsActive && p.NameProduct.Contains(keyword));
@@ -36,7 +36,7 @@ namespace QLBanDoAnNhanh.DAL.Repositories
         {
             var p = _db.Products.SingleOrDefault(x => x.IdProduct == id);
             if (p == null) return "NotFound";
-            bool hasUsed = _db.OrderDetails.Any(od => od.ProductId == id);
+            bool hasUsed = _db.OrderDetails.Any(od => od.IdProduct == id);
             if (hasUsed) { p.IsActive = false; return "Deactivated"; }
             _db.Products.DeleteOnSubmit(p); return "Deleted";
         }

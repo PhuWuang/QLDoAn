@@ -43,7 +43,7 @@ namespace QLBanDoAnNhanh.BLL.Mappers
             Total = o.Total,
             Lines = o.OrderDetails.Select(d => new OrderLineDto
             {
-                ProductId = d.ProductId,
+                ProductId = d.IdProduct,
                 ProductName = d.Product?.NameProduct,
                 Quantity = d.Quantity,
                 UnitPrice = d.UnitPrice

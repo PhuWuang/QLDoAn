@@ -21,7 +21,7 @@ namespace QLBanDoAnNhanh.DAL.Repositories
             var order = new Order
             {
                 EmployeeId = employeeId,
-                CreateDate = DateTime.UtcNow,
+                CreateDate = DateTime.Today,
                 Total = 0m
             };
             _db.Orders.InsertOnSubmit(order);
@@ -31,8 +31,9 @@ namespace QLBanDoAnNhanh.DAL.Repositories
             {
                 var d = new OrderDetail
                 {
+                    Order = order,
                     IdOrder = order.IdOrder, // sẽ có sau SubmitChanges, L2S tự xử lý qua quan hệ
-                    ProductId = ln.productId,
+                    IdProduct = ln.productId,
                     Quantity = ln.qty,
                     UnitPrice = ln.unitPrice
                 };

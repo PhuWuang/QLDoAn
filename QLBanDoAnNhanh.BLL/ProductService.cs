@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using QLBanDoAnNhanh.BLL.DTOs;
 using QLBanDoAnNhanh.BLL.Mappers;
@@ -53,7 +54,8 @@ namespace QLBanDoAnNhanh.BLL
                         Images = dto.Images,
                         IdTypeProduct = dto.IdTypeProduct,
                         CreatedBy = dto.CreatedBy, // Cần truyền IdEmployee từ UI
-                        IsActive = true
+                        IsActive = true,
+                        CreatedAt = DateTime.Today,
                     };
 
                     uow.Products.Insert(dalProduct);

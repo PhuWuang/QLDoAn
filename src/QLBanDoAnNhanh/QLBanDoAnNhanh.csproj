@@ -56,6 +56,24 @@
     <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
       <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.ReportViewer.Common, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.DataVisualization, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.DataVisualization.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.Design, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.Design.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.ProcessingObjectModel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.ProcessingObjectModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ReportViewer.WinForms, Version=15.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.ReportingServices.ReportViewerControl.Winforms.150.1652.0\lib\net40\Microsoft.ReportViewer.WinForms.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.SqlServer.Types, Version=14.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.SqlServer.Types.14.0.314.76\lib\net40\Microsoft.SqlServer.Types.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -64,6 +82,7 @@
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web" />
+    <Reference Include="System.Windows.Forms.DataVisualization" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -135,14 +154,34 @@
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmReport_InvoiceByDate.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReport_InvoiceByDate.Designer.cs">
+      <DependentUpon>frmReport_InvoiceByDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmReport_InvoiceDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReport_InvoiceDetail.Designer.cs">
+      <DependentUpon>frmReport_InvoiceDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmReport_TopProducts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmReport_TopProducts.Designer.cs">
+      <DependentUpon>frmReport_TopProducts.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\frmStatistics.Designer.cs">
       <DependentUpon>frmStatistics.cs</DependentUpon>
     </Compile>
+    <Compile Include="InvoiceLineVM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SqlServerTypes\Loader.cs" />
     <EmbeddedResource Include="Controls\Item.resx">
       <DependentUpon>Item.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +212,15 @@
     <EmbeddedResource Include="Forms\frmMain.resx">
       <DependentUpon>frmMain.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmReport_InvoiceByDate.resx">
+      <DependentUpon>frmReport_InvoiceByDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmReport_InvoiceDetail.resx">
+      <DependentUpon>frmReport_InvoiceDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmReport_TopProducts.resx">
+      <DependentUpon>frmReport_TopProducts.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmStatistics.resx">
       <DependentUpon>frmStatistics.cs</DependentUpon>
     </EmbeddedResource>
@@ -181,7 +229,20 @@
       <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <Content Include="Reports\rptInvoiceByDate.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Reports\rptInvoiceDetail.rdlc">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Reports\rptTopProducts.rdlc" />
+    <EmbeddedResource Include="Resources\rptInvoiceDetail.rdlc" />
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\frmReport_InvoiceByDate.datasource" />
+    <None Include="Properties\DataSources\InvoiceLineVM.datasource" />
+    <None Include="Properties\DataSources\QLBanDoAnNhanh.BLL.DTOs.InvoiceLineItem.datasource" />
+    <None Include="Properties\DataSources\QLBanDoAnNhanh.BLL.DTOs.InvoiceReportDto.datasource" />
+    <None Include="Properties\DataSources\QLBanDoAnNhanh.BLL.DTOs.TopProductReportItem.datasource" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -202,6 +263,19 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="burger.ico" />
+    <Content Include="SqlServerTypes\readme.htm" />
+    <Content Include="SqlServerTypes\x64\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x64\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\msvcr120.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="SqlServerTypes\x86\SqlServerSpatial140.dll">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <None Include="Resources\eye_open.jpg" />
     <None Include="Resources\eye_slash.jpg" />
   </ItemGroup>
@@ -222,6 +296,9 @@
       <Project>{7c250138-8479-4575-8daa-3eea1ab6bd78}</Project>
       <Name>QLBanDoAnNhanh.BLL</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

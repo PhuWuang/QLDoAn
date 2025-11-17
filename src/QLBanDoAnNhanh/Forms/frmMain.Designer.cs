@@ -44,6 +44,7 @@
             this.guna2DragControl1 = new Guna.UI2.WinForms.Guna2DragControl(this.components);
             this.guna2ControlBox1 = new Guna.UI2.WinForms.Guna2ControlBox();
             this.guna2ShadowPanel1 = new Guna.UI2.WinForms.Guna2ShadowPanel();
+            this.guna2GradientTileButton2 = new Guna.UI2.WinForms.Guna2GradientTileButton();
             this.guna2PictureBox2 = new Guna.UI2.WinForms.Guna2PictureBox();
             this.guna2GradientPanel4 = new Guna.UI2.WinForms.Guna2GradientPanel();
             this.lbUser = new System.Windows.Forms.Label();
@@ -350,6 +351,7 @@
             // guna2ShadowPanel1
             // 
             this.guna2ShadowPanel1.BackColor = System.Drawing.Color.Transparent;
+            this.guna2ShadowPanel1.Controls.Add(this.guna2GradientTileButton2);
             this.guna2ShadowPanel1.Controls.Add(this.guna2PictureBox2);
             this.guna2ShadowPanel1.Controls.Add(this.guna2GradientPanel4);
             this.guna2ShadowPanel1.Controls.Add(this.picSearch);
@@ -364,6 +366,31 @@
             this.guna2ShadowPanel1.ShadowShift = 3;
             this.guna2ShadowPanel1.Size = new System.Drawing.Size(1195, 96);
             this.guna2ShadowPanel1.TabIndex = 4;
+            // 
+            // guna2GradientTileButton2
+            // 
+            this.guna2GradientTileButton2.BorderRadius = 5;
+            this.guna2GradientTileButton2.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.guna2GradientTileButton2.DisabledState.BorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientTileButton2.DisabledState.CustomBorderColor = System.Drawing.Color.DarkGray;
+            this.guna2GradientTileButton2.DisabledState.FillColor = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientTileButton2.DisabledState.FillColor2 = System.Drawing.Color.FromArgb(((int)(((byte)(169)))), ((int)(((byte)(169)))), ((int)(((byte)(169)))));
+            this.guna2GradientTileButton2.DisabledState.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(141)))), ((int)(((byte)(141)))), ((int)(((byte)(141)))));
+            this.guna2GradientTileButton2.FillColor = System.Drawing.Color.Transparent;
+            this.guna2GradientTileButton2.FillColor2 = System.Drawing.Color.Transparent;
+            this.guna2GradientTileButton2.Font = new System.Drawing.Font("UTM Alexander", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.guna2GradientTileButton2.ForeColor = System.Drawing.Color.Black;
+            this.guna2GradientTileButton2.GradientMode = System.Drawing.Drawing2D.LinearGradientMode.Vertical;
+            this.guna2GradientTileButton2.HoverState.FillColor = System.Drawing.Color.DeepSkyBlue;
+            this.guna2GradientTileButton2.HoverState.FillColor2 = System.Drawing.Color.Azure;
+            this.guna2GradientTileButton2.Image = ((System.Drawing.Image)(resources.GetObject("guna2GradientTileButton2.Image")));
+            this.guna2GradientTileButton2.ImageSize = new System.Drawing.Size(40, 40);
+            this.guna2GradientTileButton2.Location = new System.Drawing.Point(732, 17);
+            this.guna2GradientTileButton2.Name = "guna2GradientTileButton2";
+            this.guna2GradientTileButton2.Size = new System.Drawing.Size(126, 76);
+            this.guna2GradientTileButton2.TabIndex = 11;
+            this.guna2GradientTileButton2.Text = "Top Product";
+            this.guna2GradientTileButton2.Click += new System.EventHandler(this.guna2GradientTileButton2_Click);
             // 
             // guna2PictureBox2
             // 
@@ -532,9 +559,9 @@
             this.guna2Panel2.Controls.Add(this.lbTotal);
             this.guna2Panel2.Controls.Add(this.label4);
             this.guna2Panel2.Font = new System.Drawing.Font("UTM Alexander", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.guna2Panel2.Location = new System.Drawing.Point(836, 490);
+            this.guna2Panel2.Location = new System.Drawing.Point(827, 490);
             this.guna2Panel2.Name = "guna2Panel2";
-            this.guna2Panel2.Size = new System.Drawing.Size(501, 267);
+            this.guna2Panel2.Size = new System.Drawing.Size(533, 267);
             this.guna2Panel2.TabIndex = 8;
             // 
             // btnPay
@@ -552,7 +579,7 @@
             this.btnPay.ForeColor = System.Drawing.Color.Black;
             this.btnPay.Image = ((System.Drawing.Image)(resources.GetObject("btnPay.Image")));
             this.btnPay.ImageSize = new System.Drawing.Size(30, 30);
-            this.btnPay.Location = new System.Drawing.Point(296, 182);
+            this.btnPay.Location = new System.Drawing.Point(330, 182);
             this.btnPay.Name = "btnPay";
             this.btnPay.Size = new System.Drawing.Size(134, 55);
             this.btnPay.TabIndex = 9;
@@ -584,11 +611,11 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("UTM Alexander", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Font = new System.Drawing.Font("UTM Alexander", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Gray;
             this.label8.Location = new System.Drawing.Point(21, 64);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(73, 20);
+            this.label8.Size = new System.Drawing.Size(78, 24);
             this.label8.TabIndex = 7;
             this.label8.Text = "VAT(5%):";
             // 
@@ -597,7 +624,7 @@
             this.lbLastPrice.AutoSize = true;
             this.lbLastPrice.Font = new System.Drawing.Font("UTM Alexander", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbLastPrice.ForeColor = System.Drawing.Color.Tomato;
-            this.lbLastPrice.Location = new System.Drawing.Point(346, 120);
+            this.lbLastPrice.Location = new System.Drawing.Point(331, 120);
             this.lbLastPrice.Name = "lbLastPrice";
             this.lbLastPrice.Size = new System.Drawing.Size(70, 38);
             this.lbLastPrice.TabIndex = 5;
@@ -606,11 +633,11 @@
             // lbVAT
             // 
             this.lbVAT.AutoSize = true;
-            this.lbVAT.Font = new System.Drawing.Font("UTM Alexander", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbVAT.Font = new System.Drawing.Font("UTM Alexander", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbVAT.ForeColor = System.Drawing.Color.Tomato;
-            this.lbVAT.Location = new System.Drawing.Point(394, 63);
+            this.lbVAT.Location = new System.Drawing.Point(334, 64);
             this.lbVAT.Name = "lbVAT";
-            this.lbVAT.Size = new System.Drawing.Size(36, 20);
+            this.lbVAT.Size = new System.Drawing.Size(43, 24);
             this.lbVAT.TabIndex = 4;
             this.lbVAT.Text = "0.0$";
             // 
@@ -628,22 +655,22 @@
             // lbTotal
             // 
             this.lbTotal.AutoSize = true;
-            this.lbTotal.Font = new System.Drawing.Font("UTM Alexander", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbTotal.Font = new System.Drawing.Font("UTM Alexander", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbTotal.ForeColor = System.Drawing.Color.Gray;
-            this.lbTotal.Location = new System.Drawing.Point(394, 14);
+            this.lbTotal.Location = new System.Drawing.Point(334, 14);
             this.lbTotal.Name = "lbTotal";
-            this.lbTotal.Size = new System.Drawing.Size(36, 20);
+            this.lbTotal.Size = new System.Drawing.Size(43, 24);
             this.lbTotal.TabIndex = 1;
             this.lbTotal.Text = "0.0$";
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("UTM Alexander", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Font = new System.Drawing.Font("UTM Alexander", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label4.ForeColor = System.Drawing.Color.Gray;
             this.label4.Location = new System.Drawing.Point(18, 14);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(78, 20);
+            this.label4.Size = new System.Drawing.Size(80, 24);
             this.label4.TabIndex = 0;
             this.label4.Text = "SubTotal:";
             // 
@@ -653,9 +680,9 @@
             this.guna2GradientPanel3.Controls.Add(this.label6);
             this.guna2GradientPanel3.FillColor = System.Drawing.Color.LightCyan;
             this.guna2GradientPanel3.FillColor2 = System.Drawing.Color.DeepSkyBlue;
-            this.guna2GradientPanel3.Location = new System.Drawing.Point(836, 131);
+            this.guna2GradientPanel3.Location = new System.Drawing.Point(827, 131);
             this.guna2GradientPanel3.Name = "guna2GradientPanel3";
-            this.guna2GradientPanel3.Size = new System.Drawing.Size(501, 60);
+            this.guna2GradientPanel3.Size = new System.Drawing.Size(533, 60);
             this.guna2GradientPanel3.TabIndex = 6;
             // 
             // label6
@@ -664,7 +691,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("UTM Alexander", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(156, 13);
+            this.label6.Location = new System.Drawing.Point(207, 17);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(128, 31);
             this.label6.TabIndex = 4;
@@ -685,9 +712,9 @@
             this.flpOrder.AutoScroll = true;
             this.flpOrder.BackColor = System.Drawing.Color.White;
             this.flpOrder.Font = new System.Drawing.Font("UTM Alexander", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.flpOrder.Location = new System.Drawing.Point(836, 197);
+            this.flpOrder.Location = new System.Drawing.Point(827, 197);
             this.flpOrder.Name = "flpOrder";
-            this.flpOrder.Size = new System.Drawing.Size(501, 286);
+            this.flpOrder.Size = new System.Drawing.Size(533, 286);
             this.flpOrder.TabIndex = 7;
             // 
             // printDocument
@@ -779,5 +806,6 @@
         private System.Windows.Forms.PrintPreviewDialog printPreview;
         private Guna.UI2.WinForms.Guna2GradientTileButton guna2GradientTileButton1;
         private Guna.UI2.WinForms.Guna2GradientTileButton btnStatistics;
+        private Guna.UI2.WinForms.Guna2GradientTileButton guna2GradientTileButton2;
     }
 }

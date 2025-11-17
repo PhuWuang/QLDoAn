@@ -40,6 +40,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnReportInvoiceByDate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInvoices)).BeginInit();
             this.SuspendLayout();
             // 
@@ -175,11 +176,27 @@
             this.label3.TabIndex = 18;
             this.label3.Text = "Start:";
             // 
+            // btnReportInvoiceByDate
+            // 
+            this.btnReportInvoiceByDate.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.btnReportInvoiceByDate.Cursor = System.Windows.Forms.Cursors.Arrow;
+            this.btnReportInvoiceByDate.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnReportInvoiceByDate.Font = new System.Drawing.Font("UTM Alexander", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportInvoiceByDate.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.btnReportInvoiceByDate.Location = new System.Drawing.Point(12, 348);
+            this.btnReportInvoiceByDate.Name = "btnReportInvoiceByDate";
+            this.btnReportInvoiceByDate.Size = new System.Drawing.Size(190, 38);
+            this.btnReportInvoiceByDate.TabIndex = 19;
+            this.btnReportInvoiceByDate.Text = "Báo cáo hóa đơn";
+            this.btnReportInvoiceByDate.UseVisualStyleBackColor = false;
+            this.btnReportInvoiceByDate.Click += new System.EventHandler(this.btnReportInvoiceByDate_Click);
+            // 
             // frmInvoiceList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(755, 400);
+            this.Controls.Add(this.btnReportInvoiceByDate);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -214,5 +231,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button btnReportInvoiceByDate;
     }
 }

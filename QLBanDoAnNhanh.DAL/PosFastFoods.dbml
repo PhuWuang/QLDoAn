@@ -10,16 +10,6 @@
       <Association Name="Employee_Order" Member="Employee" ThisKey="EmployeeId" OtherKey="IdEmployee" Type="Employee" IsForeignKey="true" />
     </Type>
   </Table>
-  <Table Name="dbo.OrderDetail" Member="OrderDetails">
-    <Type Name="OrderDetail">
-      <Column Name="IdOrder" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ProductId" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
-      <Association Name="Order_OrderDetail" Member="Order" ThisKey="IdOrder" OtherKey="IdOrder" Type="Order" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Product_OrderDetail" Member="Product" ThisKey="ProductId" OtherKey="IdProduct" Type="Product" IsForeignKey="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.Product" Member="Products">
     <Type Name="Product">
       <Column Name="IdProduct" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
@@ -31,7 +21,7 @@
       <Column Name="CreatedBy" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
       <Column Name="IsActive" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="CreatedAt" Type="System.DateTime" DbType="DateTime2 NOT NULL" CanBeNull="false" />
-      <Association Name="Product_OrderDetail" Member="OrderDetails" ThisKey="IdProduct" OtherKey="ProductId" Type="OrderDetail" />
+      <Association Name="Product_OrderDetail" Member="OrderDetails" ThisKey="IdProduct" OtherKey="IdProduct" Type="OrderDetail" />
       <Association Name="TypeProduct_Product" Member="TypeProduct" ThisKey="IdTypeProduct" OtherKey="IdTypeProduct" Type="TypeProduct" IsForeignKey="true" />
       <Association Name="Employee_Product" Member="Employee" ThisKey="CreatedBy" OtherKey="IdEmployee" Type="Employee" IsForeignKey="true" />
     </Type>
@@ -65,6 +55,16 @@
       <Association Name="Employee_Order" Member="Orders" ThisKey="IdEmployee" OtherKey="EmployeeId" Type="Order" />
       <Association Name="Employee_Product" Member="Products" ThisKey="IdEmployee" OtherKey="CreatedBy" Type="Product" />
       <Association Name="Role_Employee" Member="Role" ThisKey="IdRole" OtherKey="IdRole" Type="Role" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OrderDetail" Member="OrderDetails">
+    <Type Name="OrderDetail">
+      <Column Name="IdOrder" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="IdProduct" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="Quantity" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="UnitPrice" Type="System.Decimal" DbType="Decimal(18,2) NOT NULL" CanBeNull="false" />
+      <Association Name="Order_OrderDetail" Member="Order" ThisKey="IdOrder" OtherKey="IdOrder" Type="Order" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Product_OrderDetail" Member="Product" ThisKey="IdProduct" OtherKey="IdProduct" Type="Product" IsForeignKey="true" />
     </Type>
   </Table>
 </Database>

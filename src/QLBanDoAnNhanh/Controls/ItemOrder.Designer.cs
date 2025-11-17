@@ -43,20 +43,20 @@
             // 
             this.lbName.AutoSize = true;
             this.lbName.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbName.Location = new System.Drawing.Point(56, 7);
+            this.lbName.Location = new System.Drawing.Point(53, 7);
             this.lbName.Name = "lbName";
-            this.lbName.Size = new System.Drawing.Size(58, 18);
+            this.lbName.Size = new System.Drawing.Size(92, 18);
             this.lbName.TabIndex = 1;
-            this.lbName.Text = "Burger";
+            this.lbName.Text = "BurgerTom";
             // 
             // lbDate
             // 
             this.lbDate.AutoSize = true;
-            this.lbDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbDate.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbDate.ForeColor = System.Drawing.Color.Gray;
-            this.lbDate.Location = new System.Drawing.Point(53, 42);
+            this.lbDate.Location = new System.Drawing.Point(53, 52);
             this.lbDate.Name = "lbDate";
-            this.lbDate.Size = new System.Drawing.Size(71, 15);
+            this.lbDate.Size = new System.Drawing.Size(71, 16);
             this.lbDate.TabIndex = 2;
             this.lbDate.Text = "20-12-2002";
             // 
@@ -77,17 +77,17 @@
             // 
             this.lbPrice.AutoSize = true;
             this.lbPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPrice.Location = new System.Drawing.Point(376, 24);
+            this.lbPrice.Location = new System.Drawing.Point(360, 26);
             this.lbPrice.Name = "lbPrice";
-            this.lbPrice.Size = new System.Drawing.Size(36, 18);
+            this.lbPrice.Size = new System.Drawing.Size(95, 18);
             this.lbPrice.TabIndex = 4;
-            this.lbPrice.Text = "9.0$";
+            this.lbPrice.Text = "100.000 VND";
             // 
             // numQuantity
             // 
             this.numQuantity.BackColor = System.Drawing.Color.WhiteSmoke;
             this.numQuantity.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numQuantity.Location = new System.Drawing.Point(279, 22);
+            this.numQuantity.Location = new System.Drawing.Point(278, 26);
             this.numQuantity.Minimum = new decimal(new int[] {
             1,
             0,
@@ -106,11 +106,11 @@
             // 
             this.lbRootPrice.AutoSize = true;
             this.lbRootPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbRootPrice.Location = new System.Drawing.Point(205, 24);
+            this.lbRootPrice.Location = new System.Drawing.Point(160, 26);
             this.lbRootPrice.Name = "lbRootPrice";
-            this.lbRootPrice.Size = new System.Drawing.Size(52, 18);
+            this.lbRootPrice.Size = new System.Drawing.Size(87, 18);
             this.lbRootPrice.TabIndex = 6;
-            this.lbRootPrice.Text = "150.0$";
+            this.lbRootPrice.Text = "20.000 VND";
             // 
             // ItemOrder
             // 
@@ -124,7 +124,7 @@
             this.Controls.Add(this.lbDate);
             this.Controls.Add(this.lbName);
             this.Name = "ItemOrder";
-            this.Size = new System.Drawing.Size(481, 67);
+            this.Size = new System.Drawing.Size(503, 77);
             ((System.ComponentModel.ISupportInitialize)(this.picProduct)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numQuantity)).EndInit();
             this.ResumeLayout(false);
