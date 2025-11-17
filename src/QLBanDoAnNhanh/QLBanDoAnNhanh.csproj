@@ -53,12 +53,13 @@
     <ApplicationIcon>burger.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Guna.UI2, Version=2.0.4.6, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
-      <HintPath>..\packages\Guna.UI2.WinForms.2.0.4.6\lib\net472\Guna.UI2.dll</HintPath>
+    <Reference Include="Guna.UI2, Version=2.0.4.7, Culture=neutral, PublicKeyToken=8b9d14aa5142e261, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Guna.UI2.WinForms.2.0.4.7\lib\net472\Guna.UI2.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Design" />
     <Reference Include="System.Management" />
     <Reference Include="System.Runtime.Serialization" />
@@ -93,6 +94,12 @@
     <Compile Include="Forms\frmAddItem.Designer.cs">
       <DependentUpon>frmAddItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmCredits.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmCredits.Designer.cs">
+      <DependentUpon>frmCredits.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmChangePass.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +111,12 @@
     </Compile>
     <Compile Include="Forms\frmEditItem.Designer.cs">
       <DependentUpon>frmEditItem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\frmEmployee.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmEmployee.Designer.cs">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\frmInvoiceDetail.cs">
       <SubType>Form</SubType>
@@ -135,6 +148,12 @@
     <Compile Include="Forms\frmMain.Designer.cs">
       <DependentUpon>frmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="Forms\frmSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\frmSetting.Designer.cs">
+      <DependentUpon>frmSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Forms\frmStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -152,11 +171,17 @@
     <EmbeddedResource Include="Forms\frmAddItem.resx">
       <DependentUpon>frmAddItem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmCredits.resx">
+      <DependentUpon>frmCredits.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmChangePass.resx">
       <DependentUpon>frmChangePass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmEditItem.resx">
       <DependentUpon>frmEditItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Forms\frmEmployee.resx">
+      <DependentUpon>frmEmployee.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Forms\frmInvoiceDetail.resx">
       <DependentUpon>frmInvoiceDetail.cs</DependentUpon>
@@ -221,6 +246,10 @@
     <ProjectReference Include="..\..\QLBanDoAnNhanh.BLL\QLBanDoAnNhanh.BLL.csproj">
       <Project>{7c250138-8479-4575-8daa-3eea1ab6bd78}</Project>
       <Name>QLBanDoAnNhanh.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\QLBanDoAnNhanh.DAL\QLBanDoAnNhanh.DAL.csproj">
+      <Project>{9ab22d88-f287-4729-93c5-863855148927}</Project>
+      <Name>QLBanDoAnNhanh.DAL</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

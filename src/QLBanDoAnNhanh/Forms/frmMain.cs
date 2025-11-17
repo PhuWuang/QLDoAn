@@ -1,17 +1,19 @@
 ﻿
+using QLBanDoAnNhanh.BLL;
+using QLBanDoAnNhanh.BLL;  // <-- THÊM
+using QLBanDoAnNhanh.BLL.DTOs;      // <-- THÊM
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Drawing;
+using System.Globalization;         // <-- THÊM (cho VNĐ)
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using QLBanDoAnNhanh.BLL;
-using QLBanDoAnNhanh.BLL.DTOs;      // <-- THÊM
-using QLBanDoAnNhanh.BLL;  // <-- THÊM
-using System.Globalization;         // <-- THÊM (cho VNĐ)
+using QLBanDoAnNhanh.Forms;  // <-- namespace chứa frmCredits
+
 
 namespace QLBanDoAnNhanh
 {
@@ -683,6 +685,42 @@ namespace QLBanDoAnNhanh
             lbVAT.Text = "+ " + vat.ToString("N0", culture) + " VNĐ";
             lbTotal.Text = _price.ToString("N0", culture) + " VNĐ";
             lbLastPrice.Text = lastPrice.ToString("N0", culture) + " VNĐ";
+        }
+
+        private void guna2PictureBox3_Click(object sender, EventArgs e)
+        {
+            // Mở form Credits
+            using (var frm = new frmCredits())
+            {
+                frm.StartPosition = FormStartPosition.CenterParent; // hiện giữa frmMain
+                frm.ShowDialog(this);                               // mở dạng dialog
+            }
+        }
+        private void btnEmployee_Click(object sender, EventArgs e)
+        {
+            if (_roleName != "Admin")
+            {
+                MessageBox.Show("Bạn không có quyền truy cập chức năng này.",
+                                "Thông báo",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Warning);
+                return;
+            }
+
+            using (var f = new frmEmployee())
+            {
+                f.ShowDialog();
+            }
+        }
+
+        private void guna2GradientPanel4_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void S(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

@@ -79,7 +79,39 @@ namespace QLBanDoAnNhanh.BLL
             }
         }
 
-        // 4. Dùng cho Form Quản lý Nhân viên (sau này)
+        // 4. Tạo tài khoản nhân viên mới (dùng cho frmEmployee)
+        public string CreateEmployee(string name, string email, string password, int roleId, bool isActive)
+        {
+            using (var uow = new UnitOfWork(DataContextFactory.Create()))
+            {
+                // Kiểm tra email trùng (kể cả đã inactive)
+                var existed = uow.Db.Employees.SingleOrDefault(e => e.Email == email);
+                if (existed != null)
+                {
+                    return "Email này đã tồn tại. Vui lòng chọn email khác.";
+                }
+
+                // Hash mật khẩu bằng PBKDF2
+                (string hash, string salt) = CryptoHelper.HashPassword(password);
+
+                var newEmp = new Employee
+                {
+                    NameEmployee = name,
+                    Email = email,
+                    PasswordHash = hash,
+                    PasswordSalt = salt,
+                    IdRole = roleId,
+                    IsActive = isActive,
+                    CreatedAt = System.DateTime.Now
+                };
+
+                uow.Employees.Insert(newEmp);
+                uow.Commit();
+                return "Tạo tài khoản nhân viên thành công.";
+            }
+        }
+
+        // 5. Dùng cho Form Quản lý Nhân viên (sau này)
         public List<EmployeeDto> GetAllActiveEmployees()
         {
             using (var uow = new UnitOfWork(DataContextFactory.CreateWithIncludes()))
@@ -89,5 +121,6 @@ namespace QLBanDoAnNhanh.BLL
                           .ToList();
             }
         }
+
     }
-}
+}   
