@@ -14,18 +14,19 @@ namespace QLBanDoAnNhanh.Forms
         public frmEmployee()
         {
             InitializeComponent();
-            _employeeService = new EmployeeService();
-        }
 
-        // --------- FORM LOAD: load vai trò + danh sách NV ----------
-        private void frmEmployee_Load(object sender, EventArgs e)
-        {
-            LoadRolesToCombo();
+            // Khởi tạo service
+            _employeeService = new EmployeeService();
+
+            // Load dữ liệu ban đầu
+            LoadRoles();
             LoadEmployees();
         }
 
-        // Load dữ liệu vai trò vào combobox
-        private void LoadRolesToCombo()
+        // =====================================================================
+        // 1. LOAD ROLE LÊN COMBOBOX
+        // =====================================================================
+        private void LoadRoles()
         {
             using (var db = DataContextFactory.Create())
             {
@@ -40,18 +41,24 @@ namespace QLBanDoAnNhanh.Forms
             }
         }
 
-        // Load danh sách nhân viên (có search nếu truyền keyword)
+        // =====================================================================
+        // 2. LOAD DANH SÁCH NHÂN VIÊN
+        // =====================================================================
         private void LoadEmployees(string keyword = null)
         {
+            // Lấy danh sách nhân viên đang hoạt động từ BLL
             var list = _employeeService.GetAllActiveEmployees();
 
+            // Lọc theo keyword nếu có
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 keyword = keyword.Trim().ToLower();
+
                 list = list
                     .Where(e =>
-                        (e.NameEmployee ?? "").ToLower().Contains(keyword) ||
-                        (e.Email ?? "").ToLower().Contains(keyword))
+                        (e.NameEmployee ?? string.Empty).ToLower().Contains(keyword) ||
+                        (e.Email ?? string.Empty).ToLower().Contains(keyword) ||
+                        (e.RoleName ?? string.Empty).ToLower().Contains(keyword))
                     .ToList();
             }
 
@@ -60,49 +67,60 @@ namespace QLBanDoAnNhanh.Forms
             // Ẩn ID, RoleId cho gọn
             if (dgvEmployees.Columns["IdEmployee"] != null)
                 dgvEmployees.Columns["IdEmployee"].Visible = false;
+
             if (dgvEmployees.Columns["RoleId"] != null)
                 dgvEmployees.Columns["RoleId"].Visible = false;
 
-            // Đặt lại header text
+            // Đặt lại header text (nếu cần)
             if (dgvEmployees.Columns["NameEmployee"] != null)
                 dgvEmployees.Columns["NameEmployee"].HeaderText = "Họ tên";
+
             if (dgvEmployees.Columns["Email"] != null)
                 dgvEmployees.Columns["Email"].HeaderText = "Email";
+
             if (dgvEmployees.Columns["RoleName"] != null)
-                dgvEmployees.Columns["RoleName"].HeaderText = "Vai trò";
+                dgvEmployees.Columns["RoleName"].HeaderText = "Chức vụ";
+
             if (dgvEmployees.Columns["IsActive"] != null)
-                dgvEmployees.Columns["IsActive"].HeaderText = "Hoạt động";
+                dgvEmployees.Columns["IsActive"].HeaderText = "Đang hoạt động";
         }
 
-        // --------- NÚT ĐÓNG ----------
-        private void btnClose_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        // --------- SEARCH theo name/email ----------
+        // =====================================================================
+        // 3. TÌM KIẾM NHÂN VIÊN
+        // =====================================================================
+        // Nút Search (nếu bạn có dùng)
         private void btnSearchEmployee_Click(object sender, EventArgs e)
         {
             LoadEmployees(txtSearchEmployee.Text);
         }
 
-        // Nếu muốn vừa gõ vừa lọc thì bỏ comment dòng dưới
+        // Tìm kiếm real-time theo TextChanged
         private void txtSearchEmployee_TextChanged(object sender, EventArgs e)
         {
-            // LoadEmployees(txtSearchEmployee.Text);
+            LoadEmployees(txtSearchEmployee.Text);
         }
 
-        // --------- RELOAD (xóa ô search, load tất cả) ----------
+        // =====================================================================
+        // 4. RELOAD & CLOSE
+        // =====================================================================
         private void btnReloadEmployee_Click(object sender, EventArgs e)
         {
             txtSearchEmployee.Clear();
             LoadEmployees();
         }
 
-        // --------- VALIDATE dữ liệu tạo tài khoản ----------
+        private void btnClose_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        // =====================================================================
+        // 5. VALIDATE DỮ LIỆU TẠO TÀI KHOẢN
+        // =====================================================================
         private bool ValidateNewEmployee()
         {
-            string name = lblNameEmployee.Text.Trim();
+            // ⚠️ Sửa bug: dùng TextBox, không dùng lblNameEmployee
+            string name = txtNameEmployee.Text.Trim();
             string email = txtEmailEmployee.Text.Trim();
             string password = txtPasswordEmployee.Text;
             string confirm = txtConfirmPasswordEmployee.Text;
@@ -146,35 +164,52 @@ namespace QLBanDoAnNhanh.Forms
                 return false;
             }
 
+            if (cboRole.SelectedValue == null)
+            {
+                MessageBox.Show("Vui lòng chọn chức vụ (role).",
+                                "Lỗi",
+                                MessageBoxButtons.OK,
+                                MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
-        // --------- NÚT TẠO TÀI KHOẢN ----------
+        // =====================================================================
+        // 6. NÚT TẠO TÀI KHOẢN NHÂN VIÊN
+        // =====================================================================
         private void btnCreateEmployee_Click(object sender, EventArgs e)
         {
             if (!ValidateNewEmployee())
                 return;
 
-            string name = lblNameEmployee.Text.Trim();
+            string name = txtNameEmployee.Text.Trim();
             string email = txtEmailEmployee.Text.Trim();
             string password = txtPasswordEmployee.Text;
             bool isActive = chkIsActive.Checked;
             int roleId = (int)cboRole.SelectedValue;
 
+            // Gọi BLL để tạo nhân viên (đã hash mật khẩu bằng PBKDF2)
             string message = _employeeService.CreateEmployee(
                 name, email, password, roleId, isActive);
 
-            MessageBox.Show(message, "Thông báo",
-                MessageBoxButtons.OK, MessageBoxIcon.Information);
+            MessageBox.Show(message,
+                            "Thông báo",
+                            MessageBoxButtons.OK,
+                            MessageBoxIcon.Information);
 
-            // Nếu tạo thành công thì clear form + reload
-            if (message.StartsWith("Tạo tài khoản"))
+            // Nếu tạo thành công thì clear form + reload danh sách
+            if (message.StartsWith("Tạo tài khoản nhân viên thành công"))
             {
                 ClearNewEmployeeForm();
                 LoadEmployees();
             }
         }
 
+        // =====================================================================
+        // 7. CLEAR FORM
+        // =====================================================================
         private void ClearNewEmployeeForm()
         {
             txtNameEmployee.Clear();

@@ -76,7 +76,7 @@
             this.pnlHeader.Controls.Add(this.lblTitle);
             this.pnlHeader.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlHeader.Location = new System.Drawing.Point(0, 0);
-            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlHeader.Margin = new System.Windows.Forms.Padding(4);
             this.pnlHeader.Name = "pnlHeader";
             this.pnlHeader.Size = new System.Drawing.Size(999, 71);
             this.pnlHeader.TabIndex = 0;
@@ -100,7 +100,7 @@
             this.picIcon.BackColor = System.Drawing.SystemColors.Control;
             this.picIcon.Image = ((System.Drawing.Image)(resources.GetObject("picIcon.Image")));
             this.picIcon.Location = new System.Drawing.Point(16, 15);
-            this.picIcon.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.picIcon.Margin = new System.Windows.Forms.Padding(4);
             this.picIcon.Name = "picIcon";
             this.picIcon.Size = new System.Drawing.Size(43, 39);
             this.picIcon.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -109,13 +109,14 @@
             // 
             // lblTitle
             // 
+            this.lblTitle.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lblTitle.Location = new System.Drawing.Point(237, 11);
+            this.lblTitle.Location = new System.Drawing.Point(286, 17);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
-            this.lblTitle.Size = new System.Drawing.Size(480, 46);
+            this.lblTitle.Size = new System.Drawing.Size(389, 37);
             this.lblTitle.TabIndex = 1;
             this.lblTitle.Text = "Quản lý tài khoản nhân viên";
             // 
@@ -126,7 +127,7 @@
             this.pnlLeft.Controls.Add(this.pnlSearch);
             this.pnlLeft.Dock = System.Windows.Forms.DockStyle.Left;
             this.pnlLeft.Location = new System.Drawing.Point(0, 71);
-            this.pnlLeft.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlLeft.Margin = new System.Windows.Forms.Padding(4);
             this.pnlLeft.Name = "pnlLeft";
             this.pnlLeft.Size = new System.Drawing.Size(464, 574);
             this.pnlLeft.TabIndex = 1;
@@ -144,7 +145,7 @@
             this.colNameEmployee});
             this.dgvEmployees.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvEmployees.Location = new System.Drawing.Point(0, 60);
-            this.dgvEmployees.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvEmployees.Margin = new System.Windows.Forms.Padding(4);
             this.dgvEmployees.Name = "dgvEmployees";
             this.dgvEmployees.RowHeadersWidth = 51;
             this.dgvEmployees.Size = new System.Drawing.Size(464, 514);
@@ -195,7 +196,7 @@
             this.pnlSearch.Controls.Add(this.txtSearchEmployee);
             this.pnlSearch.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnlSearch.Location = new System.Drawing.Point(0, 0);
-            this.pnlSearch.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlSearch.Margin = new System.Windows.Forms.Padding(4);
             this.pnlSearch.Name = "pnlSearch";
             this.pnlSearch.Size = new System.Drawing.Size(464, 60);
             this.pnlSearch.TabIndex = 4;
@@ -206,10 +207,10 @@
             this.btnSearchEmployee.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnSearchEmployee.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnSearchEmployee.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnSearchEmployee.Location = new System.Drawing.Point(323, 20);
+            this.btnSearchEmployee.Location = new System.Drawing.Point(326, 20);
             this.btnSearchEmployee.Margin = new System.Windows.Forms.Padding(7, 6, 7, 6);
             this.btnSearchEmployee.Name = "btnSearchEmployee";
-            this.btnSearchEmployee.Size = new System.Drawing.Size(85, 36);
+            this.btnSearchEmployee.Size = new System.Drawing.Size(62, 24);
             this.btnSearchEmployee.TabIndex = 2;
             this.btnSearchEmployee.Text = "Search";
             this.btnSearchEmployee.UseVisualStyleBackColor = false;
@@ -222,7 +223,7 @@
             this.lblSearchEmployee.Location = new System.Drawing.Point(4, 16);
             this.lblSearchEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblSearchEmployee.Name = "lblSearchEmployee";
-            this.lblSearchEmployee.Size = new System.Drawing.Size(79, 28);
+            this.lblSearchEmployee.Size = new System.Drawing.Size(64, 21);
             this.lblSearchEmployee.TabIndex = 0;
             this.lblSearchEmployee.Text = "Name: ";
             // 
@@ -232,10 +233,10 @@
             this.btnReloadEmployee.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnReloadEmployee.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnReloadEmployee.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btnReloadEmployee.Location = new System.Drawing.Point(389, 20);
-            this.btnReloadEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnReloadEmployee.Location = new System.Drawing.Point(390, 20);
+            this.btnReloadEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnReloadEmployee.Name = "btnReloadEmployee";
-            this.btnReloadEmployee.Size = new System.Drawing.Size(88, 36);
+            this.btnReloadEmployee.Size = new System.Drawing.Size(57, 23);
             this.btnReloadEmployee.TabIndex = 3;
             this.btnReloadEmployee.Text = "Reload";
             this.btnReloadEmployee.UseVisualStyleBackColor = false;
@@ -244,9 +245,9 @@
             // txtSearchEmployee
             // 
             this.txtSearchEmployee.Location = new System.Drawing.Point(79, 20);
-            this.txtSearchEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSearchEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearchEmployee.Name = "txtSearchEmployee";
-            this.txtSearchEmployee.Size = new System.Drawing.Size(232, 22);
+            this.txtSearchEmployee.Size = new System.Drawing.Size(236, 22);
             this.txtSearchEmployee.TabIndex = 1;
             this.txtSearchEmployee.TextChanged += new System.EventHandler(this.txtSearchEmployee_TextChanged);
             // 
@@ -256,7 +257,7 @@
             this.pnlRight.Controls.Add(this.gbNewEmployee);
             this.pnlRight.Dock = System.Windows.Forms.DockStyle.Fill;
             this.pnlRight.Location = new System.Drawing.Point(464, 71);
-            this.pnlRight.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.pnlRight.Margin = new System.Windows.Forms.Padding(4);
             this.pnlRight.Name = "pnlRight";
             this.pnlRight.Size = new System.Drawing.Size(535, 574);
             this.pnlRight.TabIndex = 2;
@@ -280,9 +281,9 @@
             this.gbNewEmployee.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.gbNewEmployee.ForeColor = System.Drawing.Color.DarkBlue;
             this.gbNewEmployee.Location = new System.Drawing.Point(0, 0);
-            this.gbNewEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbNewEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.gbNewEmployee.Name = "gbNewEmployee";
-            this.gbNewEmployee.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.gbNewEmployee.Padding = new System.Windows.Forms.Padding(4);
             this.gbNewEmployee.Size = new System.Drawing.Size(535, 574);
             this.gbNewEmployee.TabIndex = 0;
             this.gbNewEmployee.TabStop = false;
@@ -296,7 +297,7 @@
             this.lblNameEmployee.Location = new System.Drawing.Point(20, 34);
             this.lblNameEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameEmployee.Name = "lblNameEmployee";
-            this.lblNameEmployee.Size = new System.Drawing.Size(171, 28);
+            this.lblNameEmployee.Size = new System.Drawing.Size(133, 21);
             this.lblNameEmployee.TabIndex = 13;
             this.lblNameEmployee.Text = "Họ tên nhân viên";
             // 
@@ -306,12 +307,13 @@
             this.btnCreateEmployee.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.btnCreateEmployee.ForeColor = System.Drawing.SystemColors.HighlightText;
             this.btnCreateEmployee.Location = new System.Drawing.Point(319, 516);
-            this.btnCreateEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnCreateEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.btnCreateEmployee.Name = "btnCreateEmployee";
             this.btnCreateEmployee.Size = new System.Drawing.Size(200, 43);
             this.btnCreateEmployee.TabIndex = 12;
             this.btnCreateEmployee.Text = "Tạo tài khoản";
             this.btnCreateEmployee.UseVisualStyleBackColor = false;
+            this.btnCreateEmployee.Click += new System.EventHandler(this.btnCreateEmployee_Click);
             // 
             // chkIsActive
             // 
@@ -321,20 +323,21 @@
             this.chkIsActive.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.chkIsActive.ForeColor = System.Drawing.SystemColors.Highlight;
             this.chkIsActive.Location = new System.Drawing.Point(172, 476);
-            this.chkIsActive.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.chkIsActive.Margin = new System.Windows.Forms.Padding(4);
             this.chkIsActive.Name = "chkIsActive";
-            this.chkIsActive.Size = new System.Drawing.Size(274, 32);
+            this.chkIsActive.Size = new System.Drawing.Size(217, 25);
             this.chkIsActive.TabIndex = 11;
             this.chkIsActive.Text = "Tài khoản đang hoạt động";
             this.chkIsActive.UseVisualStyleBackColor = true;
             // 
             // cboRole
             // 
+            this.cboRole.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.cboRole.FormattingEnabled = true;
             this.cboRole.Location = new System.Drawing.Point(25, 411);
-            this.cboRole.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.cboRole.Margin = new System.Windows.Forms.Padding(4);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(265, 40);
+            this.cboRole.Size = new System.Drawing.Size(265, 33);
             this.cboRole.TabIndex = 10;
             // 
             // lblRole
@@ -345,17 +348,18 @@
             this.lblRole.Location = new System.Drawing.Point(20, 382);
             this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(71, 28);
+            this.lblRole.Size = new System.Drawing.Size(57, 21);
             this.lblRole.TabIndex = 9;
             this.lblRole.Text = "Vai trò";
             // 
             // txtConfirmPasswordEmployee
             // 
+            this.txtConfirmPasswordEmployee.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtConfirmPasswordEmployee.Location = new System.Drawing.Point(25, 326);
-            this.txtConfirmPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtConfirmPasswordEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtConfirmPasswordEmployee.Name = "txtConfirmPasswordEmployee";
             this.txtConfirmPasswordEmployee.PasswordChar = '●';
-            this.txtConfirmPasswordEmployee.Size = new System.Drawing.Size(435, 39);
+            this.txtConfirmPasswordEmployee.Size = new System.Drawing.Size(435, 33);
             this.txtConfirmPasswordEmployee.TabIndex = 8;
             this.txtConfirmPasswordEmployee.UseSystemPasswordChar = true;
             // 
@@ -367,17 +371,18 @@
             this.lblConfirmPasswordEmployee.Location = new System.Drawing.Point(20, 297);
             this.lblConfirmPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmPasswordEmployee.Name = "lblConfirmPasswordEmployee";
-            this.lblConfirmPasswordEmployee.Size = new System.Drawing.Size(187, 28);
+            this.lblConfirmPasswordEmployee.Size = new System.Drawing.Size(145, 21);
             this.lblConfirmPasswordEmployee.TabIndex = 7;
             this.lblConfirmPasswordEmployee.Text = "Xác nhận mật khẩu";
             // 
             // txtPasswordEmployee
             // 
+            this.txtPasswordEmployee.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtPasswordEmployee.Location = new System.Drawing.Point(25, 240);
-            this.txtPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtPasswordEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtPasswordEmployee.Name = "txtPasswordEmployee";
             this.txtPasswordEmployee.PasswordChar = '●';
-            this.txtPasswordEmployee.Size = new System.Drawing.Size(435, 39);
+            this.txtPasswordEmployee.Size = new System.Drawing.Size(435, 33);
             this.txtPasswordEmployee.TabIndex = 6;
             this.txtPasswordEmployee.UseSystemPasswordChar = true;
             // 
@@ -389,16 +394,17 @@
             this.lblPasswordEmployee.Location = new System.Drawing.Point(20, 210);
             this.lblPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPasswordEmployee.Name = "lblPasswordEmployee";
-            this.lblPasswordEmployee.Size = new System.Drawing.Size(98, 28);
+            this.lblPasswordEmployee.Size = new System.Drawing.Size(77, 21);
             this.lblPasswordEmployee.TabIndex = 5;
             this.lblPasswordEmployee.Text = "Mật khẩu";
             // 
             // txtEmailEmployee
             // 
+            this.txtEmailEmployee.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtEmailEmployee.Location = new System.Drawing.Point(25, 155);
-            this.txtEmailEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtEmailEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmailEmployee.Name = "txtEmailEmployee";
-            this.txtEmailEmployee.Size = new System.Drawing.Size(435, 39);
+            this.txtEmailEmployee.Size = new System.Drawing.Size(435, 33);
             this.txtEmailEmployee.TabIndex = 4;
             // 
             // lblEmailEmployee
@@ -409,16 +415,17 @@
             this.lblEmailEmployee.Location = new System.Drawing.Point(20, 126);
             this.lblEmailEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailEmployee.Name = "lblEmailEmployee";
-            this.lblEmailEmployee.Size = new System.Drawing.Size(60, 28);
+            this.lblEmailEmployee.Size = new System.Drawing.Size(48, 21);
             this.lblEmailEmployee.TabIndex = 3;
             this.lblEmailEmployee.Text = "Email";
             // 
             // txtNameEmployee
             // 
+            this.txtNameEmployee.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.txtNameEmployee.Location = new System.Drawing.Point(25, 65);
-            this.txtNameEmployee.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtNameEmployee.Margin = new System.Windows.Forms.Padding(4);
             this.txtNameEmployee.Name = "txtNameEmployee";
-            this.txtNameEmployee.Size = new System.Drawing.Size(435, 39);
+            this.txtNameEmployee.Size = new System.Drawing.Size(435, 33);
             this.txtNameEmployee.TabIndex = 2;
             // 
             // frmEmployee
@@ -429,7 +436,8 @@
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.pnlLeft);
             this.Controls.Add(this.pnlHeader);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "frmEmployee";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Quản lý tài khoản nhân viên";
