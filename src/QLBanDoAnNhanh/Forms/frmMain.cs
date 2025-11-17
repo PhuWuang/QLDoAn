@@ -12,6 +12,7 @@ using QLBanDoAnNhanh.BLL;
 using QLBanDoAnNhanh.BLL.DTOs;      // <-- THÊM
 using QLBanDoAnNhanh.BLL;  // <-- THÊM
 using System.Globalization;         // <-- THÊM (cho VNĐ)
+using QLBanDoAnNhanh.Forms;
 
 namespace QLBanDoAnNhanh
 {
@@ -535,8 +536,36 @@ namespace QLBanDoAnNhanh
 
         private void btnInvoice_Click(object sender, EventArgs e)
         {
-            printPreview.Document = printDocument;
-            printPreview.ShowDialog();
+            var items = new List<InvoiceLineVM>();
+            foreach (Control c in flpOrder.Controls)
+            {
+                if (c is ItemOrder it)
+                {
+                    items.Add(new InvoiceLineVM
+                    {
+                        Item = it._Name,
+                        Qty = it.Quantity,
+                        Price = it.Price
+                    });
+                }
+            }
+
+            var header = new InvoiceHeaderVM
+            {
+                StoreName = "FOODS HORI",
+                Phone = "+84396531897",
+                Email = "foods-hori@gmail.com",
+                Address = "449 Street, Tang Nhon Phu A Ward, Thu Đức City",
+                Employee = _nameEmployee,       // biến bạn đã có
+                PrintedAt = DateTime.Now,
+                VATRate = 0.05m                 // 5%
+            };
+
+            using (var f = new frmReport_InvoiceDetail(items, header))
+            {
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.ShowDialog(this);
+            }
         }
 
         private void printDocument_PrintPage(object sender, System.Drawing.Printing.PrintPageEventArgs e)
@@ -648,9 +677,8 @@ namespace QLBanDoAnNhanh
                 itemProduct.Click += new System.EventHandler(this.Item_Click);
                 itemProduct.MouseDown += Item_RightClick;
                 flpItems.Controls.Add(itemProduct);
-                CheckItemInOrder();
             }
-
+            CheckItemInOrder();
         }
         // THÊM HÀM MỚI NÀY VÀO
         private void UpdateTotals()
@@ -683,6 +711,14 @@ namespace QLBanDoAnNhanh
             lbVAT.Text = "+ " + vat.ToString("N0", culture) + " VNĐ";
             lbTotal.Text = _price.ToString("N0", culture) + " VNĐ";
             lbLastPrice.Text = lastPrice.ToString("N0", culture) + " VNĐ";
+        }
+
+        private void guna2GradientTileButton2_Click(object sender, EventArgs e)
+        {
+            using (var f = new frmReport_TopProducts())
+            {
+                f.ShowDialog();   // mở dạng dialog, đóng lại thì quay về form chính
+            }
         }
     }
 }

@@ -63,6 +63,11 @@ namespace QLBanDoAnNhanh
 
             DateTime startDate = dtpStartDate.Value.Date;
             DateTime endDate = dtpEndDate.Value.Date;
+            if (startDate > endDate)
+            {
+                MessageBox.Show("Ngày bắt đầu không thể lớn hơn ngày kết thúc.", "Lỗi", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
             // Gọi xuống BLL (BLL trả về List<OrderDto>)
             var searchResult = _orderService.SearchOrders(orderId, startDate, endDate);
@@ -83,6 +88,15 @@ namespace QLBanDoAnNhanh
             txtSearchMaHD.Clear();
             // Gọi lại sự kiện Load để tải lại
             frmInvoiceList_Load(sender, e);
+        }
+
+        private void btnReportInvoiceByDate_Click(object sender, EventArgs e)
+        {
+            using (var f = new frmReport_InvoiceByDate())
+            {
+                f.StartPosition = FormStartPosition.CenterParent;
+                f.ShowDialog(this);   // mở dạng dialog trên frmMain
+            }
         }
     }
 }

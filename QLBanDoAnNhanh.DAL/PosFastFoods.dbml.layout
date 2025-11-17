@@ -1,17 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 12.875, 8.5" name="PosFastFoods">
+<ordesignerObjectsDiagram dslVersion="1.0.0.0" absoluteBounds="0, 0, 13.25, 8.5" name="PosFastFoods">
   <DataContextMoniker Name="/PosFastFoodsDataContext" />
   <nestedChildShapes>
     <classShape Id="2027525d-d3b5-41f9-9a01-b4d4e1b6b1b8" absoluteBounds="7.875, 5, 2, 1.5785953776041666">
       <DataClassMoniker Name="/PosFastFoodsDataContext/Order" />
       <nestedChildShapes>
         <elementListCompartment Id="c473dbce-719f-4f85-b7d3-8e021eb7cfe5" absoluteBounds="7.89, 5.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
-      </nestedChildShapes>
-    </classShape>
-    <classShape Id="7f6379f5-61c1-4023-833b-2e2b19d19212" absoluteBounds="10.625, 5, 2, 1.5785953776041666">
-      <DataClassMoniker Name="/PosFastFoodsDataContext/OrderDetail" />
-      <nestedChildShapes>
-        <elementListCompartment Id="9e8720a6-2e50-409c-9cea-8a60520f7b34" absoluteBounds="10.64, 5.46, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
     <classShape Id="d99e0fc4-e6a5-4749-97c2-88b52417afd3" absoluteBounds="7.875, 1.5, 2, 2.5401025390625">
@@ -32,20 +26,6 @@
         <elementListCompartment Id="8079acef-7a12-4ab3-abe2-390f6501f695" absoluteBounds="4.2650000000000006, 2.335, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(9.875 : 5.78929768880208); (10.625 : 5.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/PosFastFoodsDataContext/Order/Order_OrderDetail" />
-      <nodes>
-        <classShapeMoniker Id="2027525d-d3b5-41f9-9a01-b4d4e1b6b1b8" />
-        <classShapeMoniker Id="7f6379f5-61c1-4023-833b-2e2b19d19212" />
-      </nodes>
-    </associationConnector>
-    <associationConnector edgePoints="[(9.875 : 2.77005126953125); (11.625 : 2.77005126953125); (11.625 : 5)]" fixedFrom="NotFixed" fixedTo="NotFixed">
-      <AssociationMoniker Name="/PosFastFoodsDataContext/Product/Product_OrderDetail" />
-      <nodes>
-        <classShapeMoniker Id="d99e0fc4-e6a5-4749-97c2-88b52417afd3" />
-        <classShapeMoniker Id="7f6379f5-61c1-4023-833b-2e2b19d19212" />
-      </nodes>
-    </associationConnector>
     <associationConnector edgePoints="[(6.25 : 2.66429768880208); (7.875 : 2.66429768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PosFastFoodsDataContext/TypeProduct/TypeProduct_Product" />
       <nodes>
@@ -59,25 +39,45 @@
         <elementListCompartment Id="49818c4c-2ae3-4c08-9071-69c72ef42098" absoluteBounds="5.14, 5.46, 1.9700000000000002, 1.7878011067708335" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(7.125 : 5.78929768880208); (7.875 : 5.78929768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(7.125 : 5.78929768880208); (7.875 : 5.78929768880208)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PosFastFoodsDataContext/Employee/Employee_Order" />
       <nodes>
         <classShapeMoniker Id="008aa44f-4d85-4d04-ba9e-b8ffc8befaf1" />
         <classShapeMoniker Id="2027525d-d3b5-41f9-9a01-b4d4e1b6b1b8" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(6.71875 : 5); (6.71875 : 3.77809895833333); (7.875 : 3.77809895833333)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(6.71875 : 5); (6.71875 : 3.77809895833333); (7.875 : 3.77809895833333)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PosFastFoodsDataContext/Employee/Employee_Product" />
       <nodes>
         <classShapeMoniker Id="008aa44f-4d85-4d04-ba9e-b8ffc8befaf1" />
         <classShapeMoniker Id="d99e0fc4-e6a5-4749-97c2-88b52417afd3" />
       </nodes>
     </associationConnector>
-    <associationConnector edgePoints="[(4.375 : 5.72199625651042); (5.125 : 5.72199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(4.375 : 5.72199625651042); (5.125 : 5.72199625651042)]" fixedFrom="NotFixed" fixedTo="NotFixed">
       <AssociationMoniker Name="/PosFastFoodsDataContext/Role/Role_Employee" />
       <nodes>
         <classShapeMoniker Id="306d2f3e-5fc5-4892-b12f-92b00d4558ba" />
         <classShapeMoniker Id="008aa44f-4d85-4d04-ba9e-b8ffc8befaf1" />
+      </nodes>
+    </associationConnector>
+    <classShape Id="7501de47-7ba5-4056-90c6-d283b910c299" absoluteBounds="11, 4.125, 2, 1.5785953776041666">
+      <DataClassMoniker Name="/PosFastFoodsDataContext/OrderDetail" />
+      <nestedChildShapes>
+        <elementListCompartment Id="d05fa547-1278-4cea-8420-64c4cd8d8b04" absoluteBounds="11.015, 4.585, 1.9700000000000002, 1.0185953776041665" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+      </nestedChildShapes>
+    </classShape>
+    <associationConnector edgePoints="[(9.875 : 5.35179768880208); (11 : 5.35179768880208)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PosFastFoodsDataContext/Order/Order_OrderDetail" />
+      <nodes>
+        <classShapeMoniker Id="2027525d-d3b5-41f9-9a01-b4d4e1b6b1b8" />
+        <classShapeMoniker Id="7501de47-7ba5-4056-90c6-d283b910c299" />
+      </nodes>
+    </associationConnector>
+    <associationConnector edgePoints="[(9.875 : 2.77005126953125); (12 : 2.77005126953125); (12 : 4.125)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+      <AssociationMoniker Name="/PosFastFoodsDataContext/Product/Product_OrderDetail" />
+      <nodes>
+        <classShapeMoniker Id="d99e0fc4-e6a5-4749-97c2-88b52417afd3" />
+        <classShapeMoniker Id="7501de47-7ba5-4056-90c6-d283b910c299" />
       </nodes>
     </associationConnector>
   </nestedChildShapes>

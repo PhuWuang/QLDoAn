@@ -60,9 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\EmployeeDto.cs" />
+    <Compile Include="DTOs\InvoiceReportDto.cs" />
     <Compile Include="DTOs\OrderDto.cs" />
     <Compile Include="DTOs\OrderLineDto.cs" />
     <Compile Include="DTOs\ProductDto.cs" />
+    <Compile Include="DTOs\TopProductReportItem.cs" />
     <Compile Include="DTOs\TypeProductDto.cs" />
     <Compile Include="EmployeeService.cs" />
     <Compile Include="Mappers\DalToDtoMapper.cs" />
@@ -80,6 +82,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="Properties\DataSources\QLBanDoAnNhanh.BLL.DTOs.TopProductReportItem.datasource" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
