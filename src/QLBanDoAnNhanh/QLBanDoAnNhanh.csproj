@@ -230,6 +230,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="burger.ico" />
+    <None Include="Resources\backgroundfood1.jpg" />
     <None Include="Resources\eye_open.jpg" />
     <None Include="Resources\eye_slash.jpg" />
   </ItemGroup>

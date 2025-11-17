@@ -113,6 +113,7 @@
             this.lblTitle.AutoSize = true;
             this.lblTitle.BackColor = System.Drawing.Color.Transparent;
             this.lblTitle.Font = new System.Drawing.Font("Segoe UI Black", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblTitle.ForeColor = System.Drawing.Color.Honeydew;
             this.lblTitle.Location = new System.Drawing.Point(286, 17);
             this.lblTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblTitle.Name = "lblTitle";
@@ -264,7 +265,8 @@
             // 
             // gbNewEmployee
             // 
-            this.gbNewEmployee.BackColor = System.Drawing.Color.White;
+            this.gbNewEmployee.BackColor = System.Drawing.Color.Transparent;
+            this.gbNewEmployee.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("gbNewEmployee.BackgroundImage")));
             this.gbNewEmployee.Controls.Add(this.lblNameEmployee);
             this.gbNewEmployee.Controls.Add(this.btnCreateEmployee);
             this.gbNewEmployee.Controls.Add(this.chkIsActive);
@@ -292,12 +294,13 @@
             // lblNameEmployee
             // 
             this.lblNameEmployee.AutoSize = true;
-            this.lblNameEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblNameEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblNameEmployee.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblNameEmployee.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblNameEmployee.Location = new System.Drawing.Point(20, 34);
+            this.lblNameEmployee.Location = new System.Drawing.Point(21, 36);
             this.lblNameEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblNameEmployee.Name = "lblNameEmployee";
-            this.lblNameEmployee.Size = new System.Drawing.Size(133, 21);
+            this.lblNameEmployee.Size = new System.Drawing.Size(165, 25);
             this.lblNameEmployee.TabIndex = 13;
             this.lblNameEmployee.Text = "Họ tên nhân viên";
             // 
@@ -318,17 +321,18 @@
             // chkIsActive
             // 
             this.chkIsActive.AutoSize = true;
+            this.chkIsActive.BackColor = System.Drawing.Color.WhiteSmoke;
             this.chkIsActive.Checked = true;
             this.chkIsActive.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkIsActive.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.chkIsActive.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.chkIsActive.Location = new System.Drawing.Point(172, 476);
+            this.chkIsActive.Location = new System.Drawing.Point(243, 483);
             this.chkIsActive.Margin = new System.Windows.Forms.Padding(4);
             this.chkIsActive.Name = "chkIsActive";
             this.chkIsActive.Size = new System.Drawing.Size(217, 25);
             this.chkIsActive.TabIndex = 11;
             this.chkIsActive.Text = "Tài khoản đang hoạt động";
-            this.chkIsActive.UseVisualStyleBackColor = true;
+            this.chkIsActive.UseVisualStyleBackColor = false;
             // 
             // cboRole
             // 
@@ -337,18 +341,19 @@
             this.cboRole.Location = new System.Drawing.Point(25, 411);
             this.cboRole.Margin = new System.Windows.Forms.Padding(4);
             this.cboRole.Name = "cboRole";
-            this.cboRole.Size = new System.Drawing.Size(265, 33);
+            this.cboRole.Size = new System.Drawing.Size(176, 33);
             this.cboRole.TabIndex = 10;
             // 
             // lblRole
             // 
             this.lblRole.AutoSize = true;
-            this.lblRole.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblRole.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblRole.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblRole.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblRole.Location = new System.Drawing.Point(20, 382);
             this.lblRole.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRole.Name = "lblRole";
-            this.lblRole.Size = new System.Drawing.Size(57, 21);
+            this.lblRole.Size = new System.Drawing.Size(71, 25);
             this.lblRole.TabIndex = 9;
             this.lblRole.Text = "Vai trò";
             // 
@@ -366,12 +371,13 @@
             // lblConfirmPasswordEmployee
             // 
             this.lblConfirmPasswordEmployee.AutoSize = true;
-            this.lblConfirmPasswordEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblConfirmPasswordEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblConfirmPasswordEmployee.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblConfirmPasswordEmployee.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblConfirmPasswordEmployee.Location = new System.Drawing.Point(20, 297);
             this.lblConfirmPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblConfirmPasswordEmployee.Name = "lblConfirmPasswordEmployee";
-            this.lblConfirmPasswordEmployee.Size = new System.Drawing.Size(145, 21);
+            this.lblConfirmPasswordEmployee.Size = new System.Drawing.Size(181, 25);
             this.lblConfirmPasswordEmployee.TabIndex = 7;
             this.lblConfirmPasswordEmployee.Text = "Xác nhận mật khẩu";
             // 
@@ -389,12 +395,13 @@
             // lblPasswordEmployee
             // 
             this.lblPasswordEmployee.AutoSize = true;
-            this.lblPasswordEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblPasswordEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblPasswordEmployee.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblPasswordEmployee.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblPasswordEmployee.Location = new System.Drawing.Point(20, 210);
+            this.lblPasswordEmployee.Location = new System.Drawing.Point(21, 211);
             this.lblPasswordEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblPasswordEmployee.Name = "lblPasswordEmployee";
-            this.lblPasswordEmployee.Size = new System.Drawing.Size(77, 21);
+            this.lblPasswordEmployee.Size = new System.Drawing.Size(96, 25);
             this.lblPasswordEmployee.TabIndex = 5;
             this.lblPasswordEmployee.Text = "Mật khẩu";
             // 
@@ -410,12 +417,13 @@
             // lblEmailEmployee
             // 
             this.lblEmailEmployee.AutoSize = true;
-            this.lblEmailEmployee.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lblEmailEmployee.BackColor = System.Drawing.Color.WhiteSmoke;
+            this.lblEmailEmployee.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Bold);
             this.lblEmailEmployee.ForeColor = System.Drawing.SystemColors.Highlight;
             this.lblEmailEmployee.Location = new System.Drawing.Point(20, 126);
             this.lblEmailEmployee.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmailEmployee.Name = "lblEmailEmployee";
-            this.lblEmailEmployee.Size = new System.Drawing.Size(48, 21);
+            this.lblEmailEmployee.Size = new System.Drawing.Size(59, 25);
             this.lblEmailEmployee.TabIndex = 3;
             this.lblEmailEmployee.Text = "Email";
             // 
@@ -432,6 +440,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(999, 645);
             this.Controls.Add(this.pnlRight);
             this.Controls.Add(this.pnlLeft);
